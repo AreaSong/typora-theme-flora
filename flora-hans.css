@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Flora Hans 思源黑体亮色主题（标题：思源黑体 | 正文字号：1.2rem | 宽度：900px）
+   Flora Hans 思源黑体亮色主题（标题：思源黑体 | 正文字号：17px | 画布宽度：980px）
    公共排版与组件样式已抽离至 ./flora/flora-base.css，修改一处三套主题同步生效
    ========================================================================== */
 @import url("./flora/flora-base.css");
@@ -18,13 +18,6 @@
 }
 
 :root {
-  --write-max-width: 900px;
-  --body-font-size: 1.2rem;
-  --code-font-size: 1.1rem;
-  --fences-font-size: 1.1rem;
-  --meta-font-size: 1.05rem;
   --heading-font: "Source Han Sans", sans-serif;
   --sidebar-font: "Operator Mono", "Source Han Sans", sans-serif;
-  --task-box-size: 1.2rem;
-  --task-box-mt: 0.31rem;
 }

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Flora Dark 暗色护眼主题（标题：思源黑体 | 正文字号：1.2rem | 宽度：900px）
+   Flora Dark 暗色护眼主题（标题：思源黑体 | 正文字号：17px | 画布宽度：980px）
    公共排版与组件样式已抽离至 ./flora/flora-base.css，修改一处三套主题同步生效
    ========================================================================== */
 @import url("./flora/flora-base.css");
@@ -18,74 +18,78 @@
 }
 
 :root {
-  /* 1. 布局与字号字体变量 */
-  --write-max-width: 900px;
-  --body-font-size: 1.2rem;
-  --code-font-size: 1.1rem;
-  --fences-font-size: 1.1rem;
-  --meta-font-size: 1.05rem;
+  /* 1. 字体族变量（布局宽度与字号自动继承自 flora-base.css） */
   --heading-font: "Source Han Sans", sans-serif;
   --sidebar-font: "Operator Mono", "Source Han Sans", sans-serif;
-  --task-box-size: 1.2rem;
-  --task-box-mt: 0.31rem;
 
-  /* 2. Typora 全局暗色核心变量 */
-  --bg-color: #181a1b;
-  --text-color: #abc0d0;
-  --md-char-color: #6e7d8a;
-  --meta-content-color: #8fa2b4;
-  --table-border-color: #2a323a;
-  --primary-color: #db4d52;
-  --primary-btn-border-color: #be2f34;
+  /* 2. Typora 全局暗色核心变量（整体加深沉稳化） */
+  --bg-color: #141618;
+  --text-color: #b8cad8;
+  --md-char-color: #637280;
+  --meta-content-color: #8498aa;
+  --table-border-color: #262e36;
+  --primary-color: #c4383d;
+  --primary-btn-border-color: #9e262b;
   --primary-btn-text-color: #f0f0f0;
-  --window-border: 1px solid #16161a;
-  --active-file-bg-color: #16161a;
+  --window-border: 1px solid #111315;
+  --active-file-bg-color: #141619;
   --active-file-text-color: #f0f0f0;
-  --active-file-border-color: #db4d52;
-  --side-bar-bg-color: #2e3235;
-  --item-hover-bg-color: #202020;
+  --active-file-border-color: #c4383d;
+  --side-bar-bg-color: #25292c;
+  --sidebar-text-color: #b8cad8;
+  --item-hover-bg-color: #1a1c1e;
   --item-hover-text-color: #f0f0f0;
-  --control-text-color: #abc0d0;
+  --control-text-color: #b8cad8;
   --control-text-hover-color: #ffffff;
-  --select-text-bg-color: #db4d5266;
+  --select-text-bg-color: #c4383d66;
   --select-text-font-color: #ffffff;
   --search-select-text-color: #ffffff;
-  --search-select-bg-color: #db4d5290;
-  --rawblock-edit-panel-bd: #2a323a;
-  --panel-border-color: #2a323a;
-  --border-color: #3a424a;
-  --active-toggle-btn-color: #db4d52;
-  --focus-ring-color: #db4d52;
-  --side-bar-menu-active-tint: #db4d52;
-  --blur-text-color: #4a5560;
-  --heading-char-color: #6e7d8a;
-  --node-fill: #222629;
-  --node-border: #3a424a;
+  --search-select-bg-color: #c4383d90;
+  --rawblock-edit-panel-bd: #262e36;
+  --panel-border-color: #262e36;
+  --border-color: #38414a;
+  --active-toggle-btn-color: #c4383d;
+  --focus-ring-color: #c4383d;
+  --side-bar-menu-active-tint: #c4383d;
+  --blur-text-color: #46515c;
+  --heading-char-color: #637280;
+  --node-fill: #1d2124;
+  --node-border: #38414a;
 
   /* 3. 语义化组件暗色变量 */
-  --link-hover-color: #ff6b70;
-  --mark-bg: #b5a200;
-  --mark-color: #181a1b;
-  --blockquote-text-color: #8fa2b4;
-  --code-color: #e96900;
-  --code-bg: rgba(233, 105, 0, 0.12);
-  --code-hover-color: #181a1b;
-  --code-hover-bg: #e96900;
-  --mark-code-color: #181a1b;
-  --mark-code-bg: rgba(0, 0, 0, 0.15);
+  --link-hover-color: #f0656a;
+  --link-underline-color: rgba(196, 56, 61, 0.5);
+  --link-hover-bg: rgba(196, 56, 61, 0.16);
+  --mark-bg: rgba(230, 145, 0, 0.24);
+  --mark-border: rgba(230, 145, 0, 0.62);
+  --mark-color: #ffca2c;
+  --blockquote-text-color: #96abbd;
+  --blockquote-bg: rgba(255, 255, 255, 0.04);
+  --code-color: #f06a6f;
+  --code-bg: rgba(196, 56, 61, 0.14);
+  --code-border: rgba(196, 56, 61, 0.28);
+  --code-hover-color: #ff878b;
+  --code-hover-bg: rgba(196, 56, 61, 0.24);
+  --mark-code-color: #ffca85;
+  --mark-code-bg: rgba(0, 0, 0, 0.35);
 
   /* 4. GitHub Style Alerts (.md-alert) 暗色变量 */
   --alert-default-bg: #222629;
   --alert-note-color: #4493f8;
   --alert-note-bg: rgba(68, 147, 248, 0.1);
+  --alert-note-border: rgba(68, 147, 248, 0.28);
   --alert-tip-color: #3fb950;
   --alert-tip-bg: rgba(63, 185, 80, 0.1);
+  --alert-tip-border: rgba(63, 185, 80, 0.28);
   --alert-important-color: #a371f7;
   --alert-important-bg: rgba(163, 113, 247, 0.1);
+  --alert-important-border: rgba(163, 113, 247, 0.28);
   --alert-warning-color: #d29922;
   --alert-warning-bg: rgba(210, 153, 34, 0.1);
+  --alert-warning-border: rgba(210, 153, 34, 0.3);
   --alert-caution-color: #f85149;
   --alert-caution-bg: rgba(248, 81, 73, 0.1);
+  --alert-caution-border: rgba(248, 81, 73, 0.28);
 
   /* 5. 原生 HTML 标签暗色变量 */
   --kbd-color: #e2ecf5;
@@ -101,24 +105,59 @@
   --samp-color: #56b6c2;
 
   /* 6. 表格暗色变量 */
-  --table-cell-border: #181a1b;
-  --table-cell-text: #abc0d0;
-  --table-th-bg: rgb(34, 38, 41);
+  --table-cell-border: #323a44;
+  --table-cell-text: #c9d8e3;
+  --table-th-bg: #23282e;
   --table-th-text: #e2ecf5;
-  --table-even-bg: rgb(46, 50, 53);
-  --table-odd-bg: #202326;
+  --table-th-border-bottom: rgba(196, 56, 61, 0.55);
+  --table-even-bg: #1c2024;
+  --table-odd-bg: #171a1d;
+  --table-hover-bg: rgba(196, 56, 61, 0.14);
 
-  /* 7. 任务列表、YAML、脚注、代码块边框暗色变量 */
-  --task-border-color: #db4d52;
-  --task-bg-color: #181a1b;
-  --task-hover-bg: #2e3235;
+  /* 7. 任务列表、YAML、脚注暗色变量 */
+  --task-border-color: #5e6a75;
+  --task-bg-color: #141618;
+  --task-hover-bg: rgba(196, 56, 61, 0.16);
   --task-check-color: #ffffff;
   --meta-block-bg: #202326;
   --footnote-bg: #282c34;
   --footnote-border: #3a424a;
-  --fences-border: 1px solid #323842;
 
-  /* 8. Mermaid 图表与甘特图暗色变量 */
+  /* 8. 代码块容器与 Atom One Dark 语法高亮暗色变量 */
+  --fences-bg: #21252b;
+  --fences-text: #abb2bf;
+  --fences-border: 1px solid #323842;
+  --fences-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  --fences-header-border: rgba(255, 255, 255, 0.06);
+  --fences-gutter-border: rgba(255, 255, 255, 0.07);
+  --fences-linenumber: #5c6370;
+  --fences-cursor: #56b6c2;
+  --fences-selected-bg: #3e4451;
+  --fences-activeline-bg: rgba(153, 187, 255, 0.06);
+  --fences-matchbracket-bg: #3b514d;
+  --fences-matchbracket-color: #ffef28;
+  --fences-lang-color: #7f848e;
+  --fences-lang-bg: rgba(255, 255, 255, 0.06);
+  --fences-scrollbar: rgba(255, 255, 255, 0.18);
+  --fences-scrollbar-hover: rgba(255, 255, 255, 0.32);
+  --fences-tooltip-bg: #1b1f23;
+  --fences-tooltip-border: #323842;
+  --cm-comment: #629755;
+  --cm-keyword: #c678dd;
+  --cm-operator: #56b6c2;
+  --cm-def: #61afef;
+  --cm-variable: #d4dae4;
+  --cm-variable-2: #e06c75;
+  --cm-type: #e5c07b;
+  --cm-property: #61afef;
+  --cm-builtin: #e5c07b;
+  --cm-number: #d19a66;
+  --cm-string: #98c379;
+  --cm-tag: #e06c75;
+  --cm-meta: #abb2bf;
+  --cm-css-var: #828997;
+
+  /* 9. Mermaid 图表与甘特图暗色变量 */
   --mermaid-theme: dark;
   --mermaid-font-family: "Source Han Sans", "Operator Mono", sans-serif;
   --mermaid-line-color: #8fa2b4;
@@ -173,20 +212,87 @@
   border-color: #3a424a;
 }
 
-.footnotes-area {
-  color: #8fa2b4;
-  border-top: 1px solid #2a323a;
-  padding-top: 0.5rem;
-}
-
 #write .md-search-hit {
-  background: #db4d5245;
+  background: var(--select-text-bg-color);
   color: #ffffff;
 }
 
 #write .md-search-select {
   color: #ffffff;
-  border-color: #ff6b70;
+  border-color: var(--primary-color);
+}
+
+/* 12. 文档内嵌目录 [TOC] 暗色卡片与导出全场景高对比层级适配 */
+#write .md-toc,
+body.typora-export #write .md-toc {
+  background-color: #202326 !important;
+  border: 1px solid #2d353b !important;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+#write .md-toc-item,
+body.typora-export #write .md-toc-item {
+  color: #8498aa !important;
+}
+
+#write .md-toc a,
+#write .md-toc a:visited,
+#write .md-toc a:link,
+#write .md-toc-inner,
+body.typora-export #write .md-toc a,
+body.typora-export #write .md-toc a:visited,
+body.typora-export #write .md-toc a:link,
+body.typora-export #write .md-toc-inner {
+  color: #8498aa !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
+}
+
+#write .md-toc-h1,
+body.typora-export #write .md-toc-h1 {
+  color: #e2ecf5 !important;
+}
+
+#write .md-toc-h1 a,
+#write .md-toc-h1 .md-toc-inner,
+#write .md-toc-h2 a,
+#write .md-toc-h2 .md-toc-inner,
+body.typora-export #write .md-toc-h1 a,
+body.typora-export #write .md-toc-h1 .md-toc-inner,
+body.typora-export #write .md-toc-h2 a,
+body.typora-export #write .md-toc-h2 .md-toc-inner {
+  color: #e2ecf5 !important;
+  font-weight: 600;
+}
+
+#write .md-toc-h3 a,
+#write .md-toc-h3 .md-toc-inner,
+#write .md-toc-h4 a,
+#write .md-toc-h4 .md-toc-inner,
+#write .md-toc-h5 a,
+#write .md-toc-h5 .md-toc-inner,
+#write .md-toc-h6 a,
+#write .md-toc-h6 .md-toc-inner,
+body.typora-export #write .md-toc-h3 a,
+body.typora-export #write .md-toc-h3 .md-toc-inner,
+body.typora-export #write .md-toc-h4 a,
+body.typora-export #write .md-toc-h4 .md-toc-inner,
+body.typora-export #write .md-toc-h5 a,
+body.typora-export #write .md-toc-h5 .md-toc-inner,
+body.typora-export #write .md-toc-h6 a,
+body.typora-export #write .md-toc-h6 .md-toc-inner {
+  color: #8498aa !important;
+}
+
+#write .md-toc-item:hover a,
+#write .md-toc-item:hover .md-toc-inner,
+#write .md-toc-inner:hover,
+body.typora-export #write .md-toc-item:hover a,
+body.typora-export #write .md-toc-item:hover .md-toc-inner,
+body.typora-export #write .md-toc-inner:hover {
+  color: var(--primary-color) !important;
+  text-decoration: none !important;
 }
 
 /* Mermaid 子图表节点与连线暗色增强（防止浅色 SVG 节点背景与浅色文字撞色） */
@@ -263,7 +369,12 @@
 #write pre[lang="mermaid"] .er.attributeBoxOdd,
 #write pre[lang="mermaid"] .packetBlock,
 #write pre[lang="mermaid"] rect.packetBlock,
-#write pre[lang="mermaid"] .journey-section {
+#write pre[lang="mermaid"] .journey-section,
+#write pre[lang="mermaid"]:not([mermaid-type="gantt"]) rect.task,
+#write pre[lang="mermaid"] .node-bkg,
+#write pre[lang="mermaid"] .mindmap-node > g > path,
+#write pre[lang="mermaid"] .mindmap-node > g > rect,
+#write pre[lang="mermaid"] .mindmap-node > g > circle {
   fill: #282c34 !important;
   stroke: #8fa2b4 !important;
 }
@@ -272,6 +383,24 @@
 #write pre[lang="mermaid"] .divider,
 #write pre[lang="mermaid"] .relation {
   stroke: var(--mermaid-line-color) !important;
+}
+
+/* Mermaid v11 新增图表（象限图 quadrantChart / 看板图 kanban / 架构块图 block / XY 图表）暗色防撞色加固 */
+#write pre[lang="mermaid"] .quadrants rect:nth-of-type(odd),
+#write pre[lang="mermaid"] .kanban .section,
+#write pre[lang="mermaid"] .block rect.basic {
+  fill: #222629 !important;
+  stroke: #454d59 !important;
+}
+
+#write pre[lang="mermaid"] .quadrants rect:nth-of-type(even) {
+  fill: #282c34 !important;
+  stroke: #454d59 !important;
+}
+
+#write pre[lang="mermaid"] svg[aria-roledescription="xychart"] rect[fill="#ffffff"],
+#write pre[lang="mermaid"] svg[aria-roledescription="radar"] rect[fill="#ffffff"] {
+  fill: transparent !important;
 }
 
 /* 顶部搜索替换栏 (#md-searchpanel)、模态框 (.modal-content) 与新工具栏 (.ty-editor-toolbar) */
@@ -285,7 +414,6 @@
   background-color: #181a1b;
   color: #e2ecf5;
   border: 1px solid #3a424a;
-  border-radius: 4px;
 }
 
 #md-searchpanel .btn,
@@ -297,7 +425,7 @@
 #md-searchpanel .btn:hover,
 #md-searchpanel .searchpanel-search-option-btn:hover,
 #md-searchpanel .searchpanel-search-option-btn.active {
-  background-color: #db4d52;
+  background-color: var(--primary-color);
   color: #ffffff;
 }
 
@@ -329,13 +457,12 @@
 
 .modal-content button.btn-default:hover {
   background: #3a424a;
-  border-color: #db4d52;
+  border-color: var(--primary-color);
 }
 
 #typora-quick-open {
   background-color: #222629;
   border: 1px solid #3a424a;
-  border-radius: 8px;
 }
 
 #typora-quick-open #typora-quick-open-input input {
@@ -385,7 +512,7 @@
 
 li.CodeMirror-hint-active,
 .segmented-control input:checked + span {
-  background: #db4d52;
+  background: var(--primary-color);
   color: #ffffff;
 }
 
@@ -417,21 +544,14 @@ li.CodeMirror-hint-active,
 .megamenu-menu-panel .btn:hover {
   background-color: #2e3235;
   color: #ffffff;
-  border-color: #db4d52;
+  border-color: var(--primary-color);
 }
 
 .on-focus-mode #toggle-focus-mode-btn,
 .ty-on-typewriter-mode #toggle-typewriter-mode-btn,
 .on-focus-mode #footer-more-btn,
 .ty-on-typewriter-mode #footer-more-btn {
-  color: #db4d52;
-}
-
-#typora-sidebar #file-library-search-input {
-  background: #222629;
-  color: #e2ecf5;
-  border: 1px solid #3a424a;
-  border-radius: 4px;
+  color: var(--primary-color);
 }
 
 .megamenu-menu-section,
@@ -468,7 +588,7 @@ li.CodeMirror-hint-active,
 .ty-preferences .nav-group-item:active,
 .ty-preferences .nav-group-item.active,
 .ty-preferences .export-item.active {
-  background: #db4d52;
+  background: var(--primary-color);
   color: #ffffff;
 }
 
@@ -485,7 +605,7 @@ li.CodeMirror-hint-active,
 
 .ty-preferences .btn-default:hover,
 .ty-preferences ul.dropdown-menu li:hover {
-  border-color: #db4d52;
+  border-color: var(--primary-color);
   background: #2e3235;
   color: #ffffff;
 }
@@ -500,9 +620,46 @@ li.CodeMirror-hint-active,
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-  #write ol > li,
-  #write ul > li {
-    color: var(--primary-color);
+
+  /* 暗色模式导出 PDF 时，目录卡片背景、边框与文字强制使用深色调与层级对比 */
+  #write .md-toc {
+    background-color: #202326 !important;
+    border: 1px solid #2d353b !important;
+    box-decoration-break: clone !important;
+    -webkit-box-decoration-break: clone !important;
+  }
+
+  #write .md-toc a,
+  #write .md-toc a:visited,
+  #write .md-toc a:link,
+  #write .md-toc-inner {
+    color: #8498aa !important;
+    text-decoration: none !important;
+  }
+
+  #write .md-toc-h1 a,
+  #write .md-toc-h1 .md-toc-inner,
+  #write .md-toc-h2 a,
+  #write .md-toc-h2 .md-toc-inner {
+    color: #e2ecf5 !important;
+    font-weight: 600;
+  }
+
+  #write .md-toc-h3 a,
+  #write .md-toc-h3 .md-toc-inner,
+  #write .md-toc-h4 a,
+  #write .md-toc-h4 .md-toc-inner,
+  #write .md-toc-h5 a,
+  #write .md-toc-h5 .md-toc-inner,
+  #write .md-toc-h6 a,
+  #write .md-toc-h6 .md-toc-inner {
+    color: #8498aa !important;
+  }
+
+  /* 常规链接暗色导出保持珊瑚红 */
+  a,
+  a:visited {
+    color: var(--primary-color) !important;
   }
 }
 
@@ -510,6 +667,15 @@ li.CodeMirror-hint-active,
 #typora-source {
   background-color: #181a1b;
   color: #abb2bf;
+}
+
+.cm-s-typora-default .CodeMirror-gutters {
+  background-color: #181a1b;
+  border-right: 1px solid #2a323a;
+}
+
+.cm-s-typora-default .CodeMirror-linenumber {
+  color: #5c6370;
 }
 
 .cm-s-typora-default .CodeMirror-activeline-background {
@@ -527,8 +693,17 @@ li.CodeMirror-hint-active,
 }
 
 .cm-s-typora-default .cm-property,
-.cm-s-typora-default .cm-operator {
+.cm-s-typora-default .cm-operator,
+.cm-s-typora-default .cm-variable-2 {
   color: #56b6c2;
+}
+
+.cm-s-typora-default .cm-keyword {
+  color: #c678dd;
+}
+
+.cm-s-typora-default .cm-def {
+  color: #e5c07b;
 }
 
 .cm-s-typora-default .cm-string {
@@ -545,7 +720,12 @@ li.CodeMirror-hint-active,
   color: #61afef;
 }
 
+.cm-s-typora-default .cm-quote,
 .cm-s-typora-default .cm-comment,
 .cm-s-typora-default .cm-code {
   color: #629755;
+}
+
+.cm-s-typora-default .cm-hr {
+  color: #6e7d8a;
 }

@@ -35,12 +35,12 @@ description: 100% 覆盖 Typora 1.14.15 最新版全部 Markdown 语法、扩展
 
 ## 二级标题 H2：段落与全部行内（Span）语法
 
-### 1. 字体混排与基础行内修饰 <a id="wenben"></a>
+### 1. 字体混排与基础行内修饰
 
 这是一段中英文混排与数字标点基准文本：The quick brown fox jumps over the lazy dog (`0123456789` / `!= === >= -> =>`). 用于观察英文字体 `Operator Mono` 与中文字体 `Source Han Sans`（思源黑体）/ `上首方圆体` 的字号比例、字重对比以及行高（`line-height: 1.6`）的阅读舒适度。支持行尾两个空格或 `<br/>` 强制换行：<br/>这是强制换行后的第二行文本。
 
 - **粗体（Strong）**：`**粗体文本**` 或 `__粗体文本__` → **这是加粗强调的文字内容**
-- *斜体（Emphasis）*：`*斜体文本*` 或 `_斜体文本_` → *这是斜体文字内容，English Italic Font (`Operator Mono` Book)*
+- *斜体（Emphasis）*：*`斜体文本`* 或 _`斜体文本`_ → *这是斜体文字内容，English Italic Font (`Operator Mono` Book)*
 - ***粗斜体（Bold & Italic）***：`***粗斜体***` → ***同时应用粗体与斜体的中英文 Mixed Text***
 - ~~删除线（Strikethrough）~~：`~~删除线~~` → ~~这是一段被废弃或删除的文本~~
 - <u>下划线（Underline）</u>：`<u>下划线</u>` → <u>标准 HTML 下划线标签</u> 与 <span style="border-bottom:2px dashed #db4d52;">自定义虚线下划线</span>
@@ -63,11 +63,12 @@ description: 100% 覆盖 Typora 1.14.15 最新版全部 Markdown 语法、扩展
 - **内联链接（Inline Link）**：[Typora 官方文档中心](https://support.typora.io "悬停查看 Title 提示")
 - **引用式链接（Reference Link）**：[Flora GitHub 仓库][repo-link]
 - **自动网址转换（Auto URL）**：<https://github.com/wnanbei/typora-theme-flora> 与邮箱 <mailto:support@typora.io>
-- **文档内书签跳转（Internal Anchor）**：[点击跳转至页面底部多媒体区](#maodian) | [点击跳转至一级标题](#一级标题-h1：flora-全语法基准测试)
+- **文档内书签跳转（Internal Anchor）**：[点击跳转至页面底部多媒体区](#二级标题-h2：多媒体、折叠块与原生-html) | [点击跳转至一级标题](#一级标题-h1：flora-全语法基准测试)
 - **本地文件链接（Typora 1.1+ 支持一键创建与锚点）**：[预览文档 Preview.md](./Preview.md)
 - **脚注引用（Footnotes）**：这里引用了第一个简短脚注[^1]，以及包含代码和公式的复合脚注[^2]。
 
 [repo-link]: https://github.com/wnanbei/typora-theme-flora "Flora 主题仓库"
+
 [^1]: 这是第一个简短脚注内容，用于观察底部 `.footnotes-area` 与 `.reversefootnote` 返回箭头样式。
 [^2]: 这是第二个复合脚注内容：包含 `inline code`、**加粗**、[链接](https://typora.io) 以及行内公式 $\alpha + \beta = \gamma$。
 
@@ -340,6 +341,7 @@ sequenceDiagram
 gantt
     title Flora 主题现代化升级路线图
     dateFormat  YYYY-MM-DD
+    todayMarker off
     section 诊断阶段
     建立软链接与全景测试集     :done,    des1, 2026-11-01, 2026-11-03
     排查 Typora 1.12 兼容性   :crit, done, des2, 2026-11-03, 2026-11-05
@@ -539,14 +541,6 @@ columns 3
   c --> d
 ```
 
-```mermaid
-C4Context
-    title Flora 主题渲染上下文图 (C4 Context)
-    Person(user, "创作者", "使用 Typora 编写文档")
-    System(typora, "Typora 1.14.15", "集成 Flora CSS 主题引擎")
-    Rel(user, typora, "实时预览与导出 PDF")
-```
-
 ### 12. 传统 Flowchart.js 与 Sequence 图表引擎（测试 `lang="flow"` 与 `lang="sequence"`）
 
 ```flow
@@ -570,7 +564,7 @@ Note right of 服务端: 读取本地字体与变量
 
 ***
 
-## 二级标题 H2：多媒体、折叠块与原生 HTML <a id="maodian"></a>
+## 二级标题 H2：多媒体、折叠块与原生 HTML
 
 ### 13. 图片、带图注 Figure、音视频控件与折叠面板
 
@@ -610,4 +604,4 @@ Note right of 服务端: 读取本地字体与变量
 6. **专注模式与打字机模式（<kbd>F8</kbd> / <kbd>F9</kbd>）**：开启专注模式后，检查非当前段落的柔和变暗效果（`.on-focus-mode`）。
 7. **导出 PDF / HTML 预览（`@media print`）**：测试亮色与暗色主题下导出 PDF 时的背景色、代码框与图表完整性。
 
-<p><a href="#wenben">↑ 点击返回顶部「段落与行内排版样式」锚点</a></p>
+<p><a href="#1-字体混排与基础行内修饰">↑ 点击返回顶部「段落与行内排版样式」锚点</a></p>

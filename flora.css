@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Flora 默认亮色主题（标题：上首方圆体 | 正文字号：1rem | 宽度：850px）
+   Flora 默认亮色主题（标题：上首方圆体 | 正文字号：17px | 画布宽度：980px）
    公共排版与组件样式已抽离至 ./flora/flora-base.css，修改一处三套主题同步生效
    ========================================================================== */
 @import url("./flora/flora-base.css");
@@ -18,13 +18,6 @@
 }
 
 :root {
-  --write-max-width: 850px;
-  --body-font-size: 1rem;
-  --code-font-size: 0.95rem;
-  --fences-font-size: 1rem;
-  --meta-font-size: 0.95rem;
   --heading-font: "上首方圆体", "Source Han Sans", sans-serif;
   --sidebar-font: "Operator Mono", "上首方圆体", "Source Han Sans", sans-serif;
-  --task-box-size: 1.15rem;
-  --task-box-mt: 0.18rem;
 }

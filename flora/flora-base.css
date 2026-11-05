@@ -5,126 +5,177 @@
    适配版本：Typora 1.0 ~ 1.14.15+
    ========================================================================== */
 
+/* 🛠️ 调优开关（bool）：保留下一行 = 开启左侧 #01 块序号；整行注释掉 = 关闭且零性能开销 */
+/* @import url("./flora-debug.css"); */
+
 /* 1. 默认 CSS 变量（以 Flora 亮色默认版为基准，各子主题只需覆盖差异变量） */
 :root {
-  /* 布局与字号字体变量（flora.css 与 flora-hans.css 仅需覆盖这组变量） */
-  --write-max-width: 850px;
-  --body-font-size: 1rem;
-  --code-font-size: 0.95rem;
-  --fences-font-size: 1rem;
+  /* 布局与字号字体变量（三套主题已统一黄金阅读尺寸，子主题仅需按需切换字体族） */
+  --write-max-width: 980px;
+  --body-font-size: 1.0625rem;
+  --code-font-size: 0.92em;
+  --fences-font-size: 0.95rem;
   --meta-font-size: 0.95rem;
   --heading-font: "上首方圆体", "Source Han Sans", sans-serif;
   --body-font: "Operator Mono", "Source Han Sans", sans-serif;
   --sidebar-font: "Operator Mono", "上首方圆体", "Source Han Sans", sans-serif;
   --monospace: "Operator Mono", "Source Han Sans", "Cousine", "Consolas", monospace;
-  --task-box-size: 1.15rem;
-  --task-box-mt: 0.18rem;
+  --task-box-size: 1.1rem;
+  --task-box-mt: 0.3rem;
 
-  /* Typora 核心全局色彩变量 */
-  --bg-color: #fbfbfb;
-  --text-color: #333333;
-  --md-char-color: #b4b4b4;
-  --meta-content-color: #757575;
-  --table-border-color: #fbfbfb;
-  --primary-color: #db4d52;
-  --primary-btn-border-color: #be2f34;
-  --primary-btn-text-color: #333333;
+  /* Typora 核心全局色彩变量（整体加深沉稳化，契合文稿、代码与学科笔记） */
+  --bg-color: #f9f9fa;
+  --text-color: #1f2328;
+  --md-char-color: #8c929a;
+  --meta-content-color: #57606a;
+  --table-border-color: #f9f9fa;
+  --primary-color: #b82c30;
+  --primary-btn-border-color: #962024;
+  --primary-btn-text-color: #1f2328;
   --window-border: 1px solid #16161a;
-  --active-file-bg-color: #16161a;
+  --active-file-bg-color: #141619;
   --active-file-text-color: #f0f0f0;
-  --active-file-border-color: #db4d52;
-  --side-bar-bg-color: #2e3235;
-  --item-hover-bg-color: #202020;
+  --active-file-border-color: #b82c30;
+  --side-bar-bg-color: #25292c;
+  --sidebar-text-color: #f0f0f0;
+  --item-hover-bg-color: #1a1c1e;
   --item-hover-text-color: #f0f0f0;
-  --control-text-color: #555555;
-  --control-text-hover-color: #db4d52;
-  --select-text-bg-color: #db4d5240;
+  --control-text-color: #33383f;
+  --control-text-hover-color: #b82c30;
+  --select-text-bg-color: #b82c3040;
   --select-text-font-color: auto;
-  --search-select-text-color: #333333;
-  --search-select-bg-color: #db4d5270;
-  --rawblock-edit-panel-bd: #d0d0d0;
-  --panel-border-color: #e0e0e0;
-  --border-color: #d8d8d8;
-  --active-toggle-btn-color: #db4d52;
-  --focus-ring-color: #db4d52;
-  --side-bar-menu-active-tint: #db4d52;
-  --blur-text-color: #b4b4b4;
-  --heading-char-color: #b4b4b4;
-  --node-fill: #fbfbfb;
-  --node-border: #0000001a;
+  --search-select-text-color: #1f2328;
+  --search-select-bg-color: #b82c3075;
+  --rawblock-edit-panel-bd: #c2c7ce;
+  --panel-border-color: #cfd5dc;
+  --border-color: #c6cbd1;
+  --active-toggle-btn-color: #b82c30;
+  --focus-ring-color: #b82c30;
+  --side-bar-menu-active-tint: #b82c30;
+  --blur-text-color: #8c929a;
+  --heading-char-color: #8c929a;
+  --node-fill: #f9f9fa;
+  --node-border: #00000024;
 
   /* 语义化组件色彩变量（亮/暗主题自动切换） */
-  --link-hover-color: #be2f34;
-  --mark-bg: #d3ffa4;
-  --mark-color: inherit;
-  --blockquote-text-color: #555555;
-  --code-color: #d60000;
-  --code-bg: rgba(214, 0, 0, 0.07);
-  --code-hover-color: #ffffff;
-  --code-hover-bg: #d60000;
-  --mark-code-color: #b00000;
-  --mark-code-bg: rgba(255, 255, 255, 0.65);
+  --link-hover-color: #8f1d21;
+  --link-underline-color: rgba(184, 44, 48, 0.48);
+  --link-hover-bg: rgba(184, 44, 48, 0.1);
+  --mark-bg: rgba(250, 196, 25, 0.52);
+  --mark-border: rgba(217, 130, 0, 0.78);
+  --mark-color: #14171a;
+  --blockquote-text-color: #3b4046;
+  --blockquote-bg: rgba(184, 44, 48, 0.06);
+  --code-color: #9e1c20;
+  --code-bg: rgba(184, 44, 48, 0.085);
+  --code-border: rgba(184, 44, 48, 0.26);
+  --code-hover-color: #7d1418;
+  --code-hover-bg: rgba(184, 44, 48, 0.15);
+  --mark-code-color: #82161a;
+  --mark-code-bg: rgba(255, 255, 255, 0.78);
 
   /* GitHub Style Alerts (.md-alert) 变量 */
-  --alert-default-bg: #f4f6f8;
-  --alert-note-color: #0969da;
-  --alert-note-bg: rgba(9, 105, 218, 0.06);
-  --alert-tip-color: #1f883d;
-  --alert-tip-bg: rgba(31, 136, 61, 0.06);
-  --alert-important-color: #8250df;
-  --alert-important-bg: rgba(130, 80, 223, 0.06);
-  --alert-warning-color: #9a6700;
-  --alert-warning-bg: rgba(154, 103, 0, 0.07);
-  --alert-caution-color: #cf222e;
-  --alert-caution-bg: rgba(207, 34, 46, 0.06);
+  --alert-default-bg: #eef1f5;
+  --alert-note-color: #0550ae;
+  --alert-note-bg: rgba(5, 80, 174, 0.075);
+  --alert-note-border: rgba(5, 80, 174, 0.28);
+  --alert-tip-color: #116329;
+  --alert-tip-bg: rgba(17, 99, 41, 0.075);
+  --alert-tip-border: rgba(17, 99, 41, 0.28);
+  --alert-important-color: #6639ba;
+  --alert-important-bg: rgba(102, 57, 186, 0.075);
+  --alert-important-border: rgba(102, 57, 186, 0.28);
+  --alert-warning-color: #7d4e00;
+  --alert-warning-bg: rgba(125, 78, 0, 0.085);
+  --alert-warning-border: rgba(125, 78, 0, 0.3);
+  --alert-caution-color: #a40e26;
+  --alert-caution-bg: rgba(164, 14, 38, 0.075);
+  --alert-caution-border: rgba(164, 14, 38, 0.28);
 
   /* 原生 HTML 标签 (<kbd>, <details>, <dl>, <ins>, <samp>) 变量 */
-  --kbd-color: #333333;
+  --kbd-color: #1f2328;
   --kbd-bg: #ffffff;
-  --kbd-border: #c8ccd0;
-  --kbd-shadow: 0 2px 0 #d8dce0, inset 0 0 0 1px #ffffff;
-  --details-bg: #f4f4f6;
-  --details-border: #e2e4e8;
-  --details-summary-color: #333333;
-  --dt-color: #222222;
-  --dd-color: #555555;
-  --ins-color: #1f883d;
-  --samp-color: #0969da;
+  --kbd-border: #b5bbc2;
+  --kbd-shadow: 0 2px 0 #c6ccd2, inset 0 0 0 1px #ffffff;
+  --details-bg: #eff1f4;
+  --details-border: #d0d5dd;
+  --details-summary-color: #1f2328;
+  --dt-color: #14171a;
+  --dd-color: #3b4046;
+  --ins-color: #116329;
+  --samp-color: #0550ae;
 
   /* 表格组件变量 */
-  --table-cell-border: #fbfbfb;
-  --table-cell-text: rgb(177, 106, 104);
-  --table-th-bg: rgba(255, 198, 198, 0.75);
-  --table-th-text: rgb(177, 106, 104);
-  --table-even-bg: rgba(255, 221, 221, 0.75);
+  --table-cell-border: #cfd5dc;
+  --table-cell-text: #1f2328;
+  --table-th-bg: rgba(184, 44, 48, 0.12);
+  --table-th-text: #14171a;
+  --table-th-border-bottom: rgba(184, 44, 48, 0.45);
+  --table-even-bg: rgba(184, 44, 48, 0.042);
   --table-odd-bg: #ffffff;
+  --table-hover-bg: rgba(184, 44, 48, 0.09);
 
   /* 任务列表、YAML、脚注、搜索高亮变量 */
-  --task-border-color: #b4b4b4;
+  --task-border-color: #8c929a;
   --task-bg-color: #ffffff;
-  --task-hover-bg: #eaeaea;
-  --task-check-color: #333333;
-  --meta-block-bg: #f4f4f6;
-  --footnote-bg: #f0f0f0;
-  --footnote-border: #d0d0d0;
-  --fences-border: none;
+  --task-hover-bg: rgba(184, 44, 48, 0.1);
+  --task-check-color: #ffffff;
+  --meta-block-bg: #eff1f4;
+  --footnote-bg: #e6e9ef;
+  --footnote-border: #b8bfc7;
+
+  /* 代码块容器与 Atom One Light 语法高亮变量（亮色模式默认浅色代码块，暗色模式切换为 Atom One Dark） */
+  --fences-bg: #f3f5f8;
+  --fences-text: #383a42;
+  --fences-border: 1px solid #d5dbe2;
+  --fences-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  --fences-header-border: rgba(0, 0, 0, 0.07);
+  --fences-gutter-border: rgba(0, 0, 0, 0.08);
+  --fences-linenumber: #8c929a;
+  --fences-cursor: #4078f2;
+  --fences-selected-bg: #d8e0ec;
+  --fences-activeline-bg: rgba(0, 0, 0, 0.038);
+  --fences-matchbracket-bg: rgba(64, 120, 242, 0.16);
+  --fences-matchbracket-color: #0550ae;
+  --fences-lang-color: #57606a;
+  --fences-lang-bg: rgba(0, 0, 0, 0.06);
+  --fences-scrollbar: rgba(0, 0, 0, 0.18);
+  --fences-scrollbar-hover: rgba(0, 0, 0, 0.32);
+  --fences-tooltip-bg: #ffffff;
+  --fences-tooltip-border: #cfd5dc;
+  --cm-comment: #6e7781;
+  --cm-keyword: #a626a4;
+  --cm-operator: #0184bc;
+  --cm-def: #4078f2;
+  --cm-variable: #24292f;
+  --cm-variable-2: #e45649;
+  --cm-type: #c18401;
+  --cm-property: #4078f2;
+  --cm-builtin: #c18401;
+  --cm-number: #986801;
+  --cm-string: #50a14f;
+  --cm-tag: #e45649;
+  --cm-meta: #57606a;
+  --cm-css-var: #6e7781;
 
   /* Mermaid 图表与甘特图变量 */
-  --diagram-panel-bg: transparent;
-  --diagram-panel-border: #0000001a;
-  --mermaid-text-color: #333333;
-  --mermaid-grid-color: #333333;
-  --gantt-section-alt-bg: #d0d0d0;
-  --gantt-task-fill: #bfbee2;
-  --gantt-task-stroke: #9d9bce;
-  --gantt-done-fill: #d5d5d5;
-  --gantt-done-stroke: #929292;
-  --gantt-active-fill: #bcc0ff;
-  --gantt-active-stroke: #7f7ccd;
-  --gantt-crit-fill: #ebb5bd;
-  --gantt-crit-stroke: #d45c62;
-  --gantt-active-text: #333333;
-  --gantt-done-text: #b4b4b4;
+  --mermaid-theme: default;
+  --mermaid-font-family: "Source Han Sans", "Operator Mono", sans-serif;
+  --diagram-panel-bg: #ffffff;
+  --diagram-panel-border: #cfd5dc;
+  --mermaid-text-color: #1f2328;
+  --mermaid-grid-color: #c6cbd1;
+  --gantt-section-alt-bg: rgba(0, 0, 0, 0.045);
+  --gantt-task-fill: #a9a7d6;
+  --gantt-task-stroke: #827fbd;
+  --gantt-done-fill: #c6c8cc;
+  --gantt-done-stroke: #7a7e85;
+  --gantt-active-fill: #9fa5f5;
+  --gantt-active-stroke: #6662bd;
+  --gantt-crit-fill: #e096a1;
+  --gantt-crit-stroke: #b82c30;
+  --gantt-active-text: #1f2328;
+  --gantt-done-text: #7a7e85;
 }
 
 /* 2. 内置字体声明（与原版保持一致，不加错误的 format("truetype") 以免 WebKit 拒绝 .ttc 字体集） */
@@ -143,16 +194,18 @@
   src: url("./SourceHanSans-Normal.ttc"), url("./flora/SourceHanSans-Normal.ttc");
 }
 
-/* 3. 全局写作区与容器布局（禁止主内容区出现横向滚动条） */
+/* 3. 全局写作区与容器布局（禁止主内容区出现横向滚动条，开启视网膜抗锯齿与底部留白） */
 content {
   overflow-x: hidden !important;
 }
 
 #write {
   position: static;
-  width: 90%;
+  width: 92%;
   max-width: var(--write-max-width);
-  line-height: 1.6;
+  line-height: 1.75;
+  letter-spacing: 0.015em;
+  padding: 2rem 2.2rem 12rem 2.2rem;
   transform: none;
   height: auto;
   min-height: calc(100vh - 6rem);
@@ -163,6 +216,8 @@ body {
   font-family: var(--body-font);
   background-color: var(--bg-color);
   color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -181,52 +236,121 @@ h6 {
 }
 
 p {
-  margin: 0.7rem 0;
+  margin: 0.85rem 0;
 }
 
 a {
+  color: var(--primary-color);
+  text-underline-offset: 4px;
+  text-decoration-color: var(--link-underline-color);
+  border-radius: 3px;
+  transition: color 0.2s ease, background-color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a:visited {
   color: var(--primary-color);
 }
 
 a:hover {
   color: var(--link-hover-color);
+  text-decoration-color: var(--link-hover-color);
+}
+
+#write a:hover {
+  background-color: var(--link-hover-bg);
+}
+
+#write u {
+  text-decoration: none;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 1px;
 }
 
 del {
   color: var(--md-char-color);
 }
 
-mark {
-  padding: 2px 4px;
-  background: var(--mark-bg);
-  border-radius: 3px;
-  color: var(--mark-color);
+sub,
+sup {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 
-/* 5. 传统引用块（排除 Typora 1.8+ 新增的 .md-alert 警告框） */
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+.md-comment {
+  color: var(--md-char-color);
+  font-family: var(--monospace);
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.md-tag,
+.md-before,
+.md-after {
+  color: var(--md-char-color);
+}
+
+/* 非编辑聚焦状态下，自动隐藏标题中的空 HTML 锚点标签（如 <a id="wenben"></a>），光标点入该行时自动恢复显示 */
+#write .md-heading:not(.md-focus) .md-html-inline {
+  display: none;
+}
+
+mark {
+  margin: 0 0.12em;
+  padding: 0.1em 0.38em;
+  background: var(--mark-bg);
+  border-bottom: 2px solid var(--mark-border);
+  border-radius: 4px;
+  color: var(--mark-color);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* 5. 传统引用块（柔和微底色圆角卡片 + 多层嵌套自动叠色 + 首尾段距对齐） */
 blockquote:not(.md-alert) {
   position: relative;
-  margin: 1rem 0 1rem 2rem;
+  margin: 1rem 0;
+  padding: 0.65rem 1.15rem;
   color: var(--blockquote-text-color);
+  background-color: var(--blockquote-bg);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0 8px 8px 0;
 }
 
 blockquote:not(.md-alert)::before {
-  content: "";
-  position: absolute;
-  left: -2rem;
-  height: 100%;
-  width: 0.25rem;
-  background: var(--primary-color);
+  display: none;
 }
 
-/* 6. GitHub Style Alerts / Callouts (Typora 1.8+ 新增组件适配) */
+blockquote:not(.md-alert) > :first-child {
+  margin-top: 0;
+}
+
+blockquote:not(.md-alert) > :last-child {
+  margin-bottom: 0;
+}
+
+blockquote:not(.md-alert) blockquote:not(.md-alert) {
+  margin: 0.6rem 0;
+}
+
+/* 6. GitHub Style Alerts / Callouts (Typora 1.8+ 全包围圆角微边框卡片) */
 #write .md-alert {
   position: relative;
   margin: 1rem 0;
-  padding: 0.75rem 1.2rem;
-  border-left-width: 0.25rem;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid var(--border-color);
+  border-left-width: 4px;
   border-left-style: solid;
-  border-radius: 0 8px 8px 0;
+  border-radius: 8px;
   background-color: var(--alert-default-bg);
 }
 
@@ -234,7 +358,21 @@ blockquote:not(.md-alert)::before {
   display: none !important;
 }
 
+#write .md-alert .md-alert-text {
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+#write .md-alert > :first-child {
+  margin-top: 0;
+}
+
+#write .md-alert > :last-child {
+  margin-bottom: 0;
+}
+
 #write .md-alert.md-alert-note {
+  border-color: var(--alert-note-border);
   border-left-color: var(--alert-note-color);
   background-color: var(--alert-note-bg);
 }
@@ -243,6 +381,7 @@ blockquote:not(.md-alert)::before {
 }
 
 #write .md-alert.md-alert-tip {
+  border-color: var(--alert-tip-border);
   border-left-color: var(--alert-tip-color);
   background-color: var(--alert-tip-bg);
 }
@@ -251,6 +390,7 @@ blockquote:not(.md-alert)::before {
 }
 
 #write .md-alert.md-alert-important {
+  border-color: var(--alert-important-border);
   border-left-color: var(--alert-important-color);
   background-color: var(--alert-important-bg);
 }
@@ -259,6 +399,7 @@ blockquote:not(.md-alert)::before {
 }
 
 #write .md-alert.md-alert-warning {
+  border-color: var(--alert-warning-border);
   border-left-color: var(--alert-warning-color);
   background-color: var(--alert-warning-bg);
 }
@@ -267,6 +408,7 @@ blockquote:not(.md-alert)::before {
 }
 
 #write .md-alert.md-alert-caution {
+  border-color: var(--alert-caution-border);
   border-left-color: var(--alert-caution-color);
   background-color: var(--alert-caution-bg);
 }
@@ -274,15 +416,19 @@ blockquote:not(.md-alert)::before {
   color: var(--alert-caution-color);
 }
 
-/* 7. 行内代码块（移除 hover 加粗防止排版抖动） */
+/* 7. 行内代码块（自动微距 + 精致微边框 + 温和悬停态） */
 code {
+  margin: 0 0.18em;
+  padding: 0.12em 0.4em;
   font-size: var(--code-font-size);
   font-family: "Operator Mono", "Source Han Sans", monospace;
   color: var(--code-color);
   background: var(--code-bg);
-  border-radius: 0.25rem;
-  padding: 0.1rem 0.35rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  border: 1px solid var(--code-border);
+  border-radius: 5px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 code:hover {
@@ -290,9 +436,39 @@ code:hover {
   background: var(--code-hover-bg);
 }
 
+pre code {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
 mark code {
   color: var(--mark-code-color);
   background: var(--mark-code-bg);
+}
+
+#write h1 code,
+#write h2 code,
+#write h3 code,
+#write h4 code,
+#write h5 code,
+#write h6 code {
+  font-size: 0.86em;
+  padding: 0.08em 0.35em;
+}
+
+#write a code {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+#write a:hover code {
+  color: var(--link-hover-color);
+  background: var(--code-hover-bg);
+  border-color: var(--primary-color);
 }
 
 /* 8. 原生 HTML5 标签 (<kbd>, <details>, <dl>, <ruby>, <abbr>, <ins>, <q>, <samp>, <figcaption>) */
@@ -312,23 +488,39 @@ kbd {
 
 details {
   margin: 1rem 0;
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1.1rem;
   background: var(--details-bg);
   border: 1px solid var(--details-border);
-  border-radius: 6px;
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
 }
 
 details > summary {
   cursor: pointer;
   color: var(--details-summary-color);
-  font-weight: bold;
+  font-weight: 600;
   outline: none;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+details > summary::marker,
+details > summary::-webkit-details-marker {
+  color: var(--primary-color);
+}
+
+details > summary:hover {
+  color: var(--primary-color);
 }
 
 details[open] > summary {
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.45rem;
   border-bottom: 1px solid var(--details-border);
+}
+
+details > :last-child {
+  margin-bottom: 0;
 }
 
 dl {
@@ -336,15 +528,29 @@ dl {
 }
 
 dt {
-  font-weight: bold;
+  position: relative;
+  font-weight: 600;
   color: var(--dt-color);
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+  padding-left: 0.9rem;
+}
+
+dt::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.58em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
 }
 
 dd {
-  margin-left: 1.5rem;
+  margin: 0.25rem 0 0.55rem 0.2rem;
+  padding-left: 0.9rem;
   color: var(--dd-color);
-  margin-bottom: 0.5rem;
+  border-left: 2px solid var(--border-color);
 }
 
 ruby > rt {
@@ -374,32 +580,63 @@ var {
   color: var(--samp-color);
 }
 
+#write img:not(.md-emoji) {
+  max-width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.25s ease;
+}
+
+#write img:not(.md-emoji):hover {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.13);
+}
+
+#write video {
+  display: block;
+  max-width: 100%;
+  margin: 0.85rem auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+#write audio {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0.85rem auto;
+}
+
 figcaption {
   text-align: center;
-  font-size: 0.9em;
+  font-size: 0.88em;
   color: var(--meta-content-color);
-  margin-top: 0.4rem;
+  margin-top: 0.45rem;
 }
 
 figure {
   max-width: 100%;
   overflow-x: auto;
-  margin: 1rem 0;
+  margin: 1.1rem 0;
 }
 
 hr {
-  border-color: var(--border-color);
+  height: 1px;
+  border: none;
+  background-color: var(--border-color);
+  margin: 2rem 0;
 }
 
-/* 9. 表格样式（限定在文档写作区与导出模式，避免污染弹窗与统计面板中的表格） */
+/* 9. 表格样式（8px 圆角卡片外框 + 1px 柔和网格 + 表头珊瑚底线 + 整行悬停防串行） */
 #write table:not(.md-grid-board),
 body.typora-export table:not(.md-grid-board) {
-  border: none;
-  border-collapse: collapse;
+  border: 1px solid var(--table-cell-border);
+  border-collapse: separate;
   border-spacing: 0;
+  border-radius: 8px;
   width: 100%;
-  margin: 1rem 0;
+  margin: 1.1rem 0;
   overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 #write table:not(.md-grid-board) thead,
@@ -409,45 +646,47 @@ body.typora-export table:not(.md-grid-board) {
 
 #write table:not(.md-grid-board) td,
 #write table:not(.md-grid-board) th {
-  border: 2px solid var(--table-cell-border);
-  border-top: none;
-  border-bottom: none;
-  padding: 10px 15px;
+  border: none;
+  border-right: 1px solid var(--table-cell-border);
+  border-bottom: 1px solid var(--table-cell-border);
+  padding: 0.65rem 0.95rem;
   color: var(--table-cell-text);
+  line-height: 1.6;
+}
+
+#write table:not(.md-grid-board) th:last-child,
+#write table:not(.md-grid-board) td:last-child {
+  border-right: none;
+}
+
+#write table:not(.md-grid-board) tbody tr:last-child td {
+  border-bottom: none;
 }
 
 #write table:not(.md-grid-board) th {
   background: var(--table-th-bg);
   color: var(--table-th-text);
-  font-weight: bold;
+  font-weight: 600;
+  border-bottom: 2px solid var(--table-th-border-bottom);
 }
 
-#write table:not(.md-grid-board) tr:nth-child(even) {
+#write table:not(.md-grid-board) tbody tr:nth-child(even) {
   background-color: var(--table-even-bg);
 }
 
-#write table:not(.md-grid-board) tr:nth-child(odd) {
+#write table:not(.md-grid-board) tbody tr:nth-child(odd) {
   background-color: var(--table-odd-bg);
 }
 
-/* 表格四角圆角 */
-#write table:not(.md-grid-board) tr th:first-child {
-  border-top-left-radius: 5px;
+#write table:not(.md-grid-board) tbody tr {
+  transition: background-color 0.15s ease;
 }
 
-#write table:not(.md-grid-board) tr th:last-child {
-  border-top-right-radius: 5px;
+#write table:not(.md-grid-board) tbody tr:hover {
+  background-color: var(--table-hover-bg);
 }
 
-#write table:not(.md-grid-board) tr:last-child td:first-child {
-  border-bottom-left-radius: 5px;
-}
-
-#write table:not(.md-grid-board) tr:last-child td:last-child {
-  border-bottom-right-radius: 5px;
-}
-
-/* 10. 各级标题样式（还原 Flora 原版居中 H1/H2 与 H3~H6 左侧级别标记） */
+/* 10. 各级标题样式（1.22x 黄金字号比例 + H1 底分割线 + H2 居中灵动珊瑚红短横条 + H3~H6 左侧悬浮标） */
 #write h1,
 #write h2,
 #write h3,
@@ -456,6 +695,7 @@ body.typora-export table:not(.md-grid-board) {
 #write h6 {
   font-family: var(--heading-font);
   position: relative;
+  line-height: 1.4;
 }
 
 #write h1 > span,
@@ -472,43 +712,69 @@ body.typora-export table:not(.md-grid-board) {
   width: auto;
 }
 
-/* 各级标题字体大小，上下间隔大小 */
+/* 各级标题字体大小与上下呼吸间距 */
 #write h1 {
-  font-size: 3rem;
-  margin: 3rem 0;
+  font-size: 2.2rem;
+  margin: 1.8rem 0 1.4rem;
+  padding-bottom: 0.5rem;
   text-align: center;
+  border-bottom: 1px solid var(--border-color);
 }
 
 #write h2 {
-  font-size: 2.2rem;
-  margin: 4rem 0 2rem 0;
+  font-size: 1.7rem;
+  margin: 2.4rem 0 1.1rem;
   text-align: center;
 }
 
+#write h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin: 0.45rem auto 0;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+#write h2:hover::after {
+  width: 5rem;
+}
+
 #write h3 {
-  font-size: 1.6rem;
-  margin: 2.2rem 0 1rem 0;
+  font-size: 1.38rem;
+  font-weight: 600;
+  margin: 1.6rem 0 0.7rem;
 }
 
 #write h4 {
-  font-size: 1.4rem;
-  margin: 1.5rem 0 0 0;
+  font-size: 1.22rem;
+  font-weight: 600;
+  margin: 1.3rem 0 0.55rem;
 }
 
-#write h5,
+#write h5 {
+  font-size: 1.12rem;
+  font-weight: 600;
+  margin: 1.05rem 0 0.45rem;
+}
+
 #write h6 {
-  font-size: 1.2rem;
-  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0.95rem 0 0.45rem;
+  color: var(--text-color);
 }
 
-/* 标题前显示标题级别 */
+/* H3~H6 左侧悬浮级别标记（相对字号精准对齐 + 悬停/聚焦点亮为珊瑚红） */
 #write h3::before,
 #write h4::before,
 #write h5::before,
 #write h6::before {
   position: absolute;
   color: var(--heading-char-color);
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: bold;
   font-variant: small-caps;
   border: 0;
@@ -516,11 +782,22 @@ body.typora-export table:not(.md-grid-board) {
   right: auto;
   float: none;
   padding: 0;
-  line-height: 20px;
-  left: -1.5625rem;
-  top: 0.375rem;
-  vertical-align: middle;
+  line-height: 1;
+  left: -2.1rem;
+  top: 0.38em;
   display: inline-block;
+  transition: color 0.25s ease;
+}
+
+#write h3:hover::before,
+#write h4:hover::before,
+#write h5:hover::before,
+#write h6:hover::before,
+#write h3.md-focus::before,
+#write h4.md-focus::before,
+#write h5.md-focus::before,
+#write h6.md-focus::before {
+  color: var(--primary-color);
 }
 
 #write h3::before {
@@ -536,45 +813,65 @@ body.typora-export table:not(.md-grid-board) {
   content: "H6";
 }
 
-/* 11. 列表与任务列表 */
+/* 11. 列表与任务列表（三级符号递进 + 呼吸微距 + 现代珊瑚红实心复选框） */
 #write ol,
 #write ul {
   padding-left: 2rem;
-  margin: 0.5rem 0;
+  margin: 0.6rem 0;
 }
 
 #write ol > li,
 #write ul > li {
+  margin: 0.28rem 0;
+}
+
+#write ol > li::marker,
+#write ul > li::marker {
   color: var(--primary-color);
   font-weight: bold;
 }
 
-#write ol > li > *,
-#write ul > li > * {
-  color: var(--text-color);
-  font-weight: normal;
+#write ol > li > p,
+#write ul > li > p {
+  margin: 0.25rem 0;
+  padding-left: 0.2rem;
 }
 
-#write ol > li > *:not(ol):not(ul),
-#write ul > li > *:not(ol):not(ul) {
-  padding-left: 0.25rem;
+#write ol > li > ol,
+#write ol > li > ul,
+#write ul > li > ol,
+#write ul > li > ul {
+  margin: 0.25rem 0;
 }
 
 #write ul {
   list-style-type: disc;
 }
 
+#write ul ul {
+  list-style-type: circle;
+}
+
+#write ul ul ul {
+  list-style-type: square;
+}
+
+#write .md-task-list-item {
+  list-style-type: none !important;
+}
+
 #write .md-task-list-item > input {
   -webkit-appearance: initial;
   display: block;
   position: absolute;
-  border: 1px solid var(--task-border-color);
-  border-radius: 0.25rem;
+  border: 1.5px solid var(--task-border-color);
+  border-radius: 4px;
   margin-top: var(--task-box-mt);
-  margin-left: -1.8rem;
+  margin-left: -1.75rem;
   height: var(--task-box-size);
   width: var(--task-box-size);
-  transition: background 0.3s;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   background-color: var(--task-bg-color);
 }
 
@@ -584,53 +881,79 @@ body.typora-export table:not(.md-grid-board) {
 }
 
 #write .md-task-list-item > input:hover {
-  background: var(--task-hover-bg);
+  background-color: var(--task-hover-bg);
+  border-color: var(--primary-color);
+}
+
+#write .md-task-list-item > input[checked] {
+  background-color: var(--primary-color);
   border-color: var(--primary-color);
 }
 
 #write .md-task-list-item > input[checked]::before {
-  content: "";
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  height: 60%;
-  width: 2px;
-  transform: rotate(40deg);
-  background: var(--task-check-color);
+  display: none;
 }
 
 #write .md-task-list-item > input[checked]::after {
   content: "";
   position: absolute;
-  top: 46%;
-  left: 25%;
-  height: 30%;
-  width: 2px;
-  transform: rotate(-40deg);
-  background: var(--task-check-color);
+  top: 14%;
+  left: 33%;
+  width: 32%;
+  height: 56%;
+  border-right: 2px solid var(--task-check-color);
+  border-bottom: 2px solid var(--task-check-color);
+  transform: rotate(40deg);
+  background: transparent;
+  box-sizing: border-box;
 }
 
 #write .md-task-list-item > p {
-  transition: color 0.3s, opacity 0.3s;
+  transition: color 0.25s ease, opacity 0.25s ease;
 }
 
-#write .md-task-list-item.task-list-done > p {
+#write .md-task-list-item.task-list-done > p,
+#write .md-task-list-item > input[checked] ~ p {
   color: var(--md-char-color);
   text-decoration: line-through;
 }
 
-/* 12. 头部元数据 YAML */
+/* 12. 头部元数据 YAML（全包围 8px 圆角卡片 + 等宽字体对齐 + 右上角 YAML 徽标） */
 #write .md-meta-block {
-  font-size: var(--meta-font-size);
+  position: relative;
+  font-family: var(--monospace);
+  font-size: 0.92rem;
+  line-height: 1.55;
   background-color: var(--meta-block-bg);
-  border-bottom: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.85rem 1.15rem;
+  margin-bottom: 1.25rem;
   color: var(--meta-content-color);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
-/* 13. 数学公式块与 Typora 1.9+ ```math 适配（排除代码块深色背景） */
+#write .md-meta-block::before {
+  content: "YAML";
+  position: absolute;
+  top: 0.55rem;
+  right: 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--md-char-color);
+  padding: 0.12rem 0.4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* 13. 数学公式系统：MathJax v4 行内公式、块级公式与 Typora 1.9+ ```math 适配 */
+#write .md-inline-math,
+#write mjx-container:not([display="true"]) {
+  margin: 0 0.14em;
+}
+
 .md-fences.md-fences-math:not(.md-focus),
 .md-fences.md-fences-advanced:not(.md-focus) {
   background-color: transparent !important;
@@ -638,6 +961,15 @@ body.typora-export table:not(.md-grid-board) {
   padding: 0 !important;
   margin: 1rem 0 !important;
   color: var(--text-color) !important;
+}
+
+#write .md-math-container,
+#write .md-mathblock-panel mjx-container[display="true"],
+#write .md-fences-math mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 0.45rem 0.25rem;
 }
 
 /* 14. 表格编辑工具栏、TOC 目录、脚注、图片与搜索高亮 */
@@ -677,6 +1009,35 @@ body.typora-export table:not(.md-grid-board) {
   color: var(--primary-color);
 }
 
+#write .typora-table-drag-area::after {
+  content: "";
+  position: absolute;
+  border: 2px solid;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+#typora-table-row-tracker #write .typora-table-drag-area::after,
+#typora-table-col-tracker #write .typora-table-drag-area::after {
+  opacity: 1;
+}
+
+#typora-table-row-tracker #write .typora-table-drag-area::after {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+}
+
+#typora-table-col-tracker #write .typora-table-drag-area::after {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 0;
+}
+
 #write .md-math-block,
 #write .md-rawblock {
   margin-top: 1rem;
@@ -689,11 +1050,13 @@ body.typora-export table:not(.md-grid-board) {
 }
 
 #write .md-rawblock > .md-rawblock-container {
-  transition: 0.3s;
+  border-radius: 6px;
+  transition: background-color 0.25s ease;
 }
 
 #write .md-rawblock > .md-rawblock-tooltip {
-  transition: 0.3s;
+  border-radius: 4px 4px 0 0;
+  transition: 0.25s ease;
   display: block;
   visibility: hidden;
   opacity: 0;
@@ -711,45 +1074,194 @@ body.typora-export table:not(.md-grid-board) {
   padding-right: 0px;
 }
 
+/* 文档内嵌目录 [TOC]（8px 独立圆角导航卡片 + 层级灰度阶梯 + 悬停点亮珊瑚红） */
+#write .md-toc,
+body.typora-export #write .md-toc {
+  margin: 1.2rem 0;
+  padding: 0.85rem 1.25rem;
+  background-color: var(--meta-block-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 #write .md-toc-tooltip {
   z-index: 10;
 }
 
-#write .md-toc-item {
-  font-size: 1.1rem;
-  color: var(--primary-color);
+#write .md-toc-content {
+  margin: 0.25rem 0;
+}
+
+#write .md-toc-item,
+body.typora-export #write .md-toc-item {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--blockquote-text-color) !important;
+  border-radius: 4px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+#write .md-toc-item:hover {
+  background-color: var(--link-hover-bg);
+}
+
+/* 链接实体与 inner 样式：保证导出 PDF 与屏幕渲染直接命中 a[href] 标签，阻断 Typora base.css 与浏览器 UA 默认蓝字 */
+#write .md-toc a,
+#write .md-toc a:visited,
+#write .md-toc a:link,
+#write .md-toc-inner,
+body.typora-export #write .md-toc a,
+body.typora-export #write .md-toc a:visited,
+body.typora-export #write .md-toc a:link,
+body.typora-export #write .md-toc-inner {
+  color: var(--blockquote-text-color) !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
 }
 
 #write .md-toc-h1 {
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color) !important;
+  margin-top: 0.25rem;
+}
+
+#write .md-toc-h1 a,
+#write .md-toc-h1 .md-toc-inner,
+body.typora-export #write .md-toc-h1 a,
+body.typora-export #write .md-toc-h1 .md-toc-inner {
+  color: var(--text-color) !important;
+  font-weight: 600;
 }
 
 #write .md-toc-h2 {
-  font-size: 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-color) !important;
 }
 
-#write .md-toc-content {
-  margin: 1rem 0;
+#write .md-toc-h2 a,
+#write .md-toc-h2 .md-toc-inner,
+body.typora-export #write .md-toc-h2 a,
+body.typora-export #write .md-toc-h2 .md-toc-inner {
+  color: var(--text-color) !important;
+  font-weight: 600;
 }
 
+#write .md-toc-h3 a,
+#write .md-toc-h3 .md-toc-inner,
+body.typora-export #write .md-toc-h3 a,
+body.typora-export #write .md-toc-h3 .md-toc-inner {
+  color: var(--blockquote-text-color) !important;
+}
+
+#write .md-toc-h4 a,
+#write .md-toc-h4 .md-toc-inner,
+#write .md-toc-h5 a,
+#write .md-toc-h5 .md-toc-inner,
+#write .md-toc-h6 a,
+#write .md-toc-h6 .md-toc-inner,
+body.typora-export #write .md-toc-h4 a,
+body.typora-export #write .md-toc-h4 .md-toc-inner,
+body.typora-export #write .md-toc-h5 a,
+body.typora-export #write .md-toc-h5 .md-toc-inner,
+body.typora-export #write .md-toc-h6 a,
+body.typora-export #write .md-toc-h6 .md-toc-inner {
+  color: var(--blockquote-text-color) !important;
+}
+
+#write .md-toc-item:hover a,
+#write .md-toc-item:hover .md-toc-inner,
+#write .md-toc-inner:hover,
+body.typora-export #write .md-toc-item:hover a,
+body.typora-export #write .md-toc-item:hover .md-toc-inner,
+body.typora-export #write .md-toc-inner:hover {
+  color: var(--primary-color) !important;
+  text-decoration: none !important;
+}
+
+/* 文内脚注角标 [^1] 与文末脚注区 */
 #write .md-footnote,
 sup.md-footnote {
-  font-size: 0.8em;
+  font-size: 0.78em;
   border: 1px solid var(--footnote-border);
   padding: 1px 5px;
   background: var(--footnote-bg);
   color: var(--primary-color);
   border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+#write .md-footnote a,
+sup.md-footnote a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+#write .md-footnote:hover,
+sup.md-footnote:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+#write .md-footnote:hover a,
+sup.md-footnote:hover a {
+  color: #ffffff;
+}
+
+.footnotes-area {
+  margin-top: 2rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-color);
+  font-size: 0.9rem;
+  color: var(--blockquote-text-color);
+}
+
+.reversefootnote,
+#write .md-reverse-footnote-area a {
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 0 0.25rem;
+  border-radius: 3px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.reversefootnote:hover,
+#write .md-reverse-footnote-area a:hover {
+  background-color: var(--link-hover-bg);
+  color: var(--link-hover-color);
+}
+
+#write .md-def-footnote,
+#write .md-def-link {
+  font-size: 0.9rem;
+  margin: 0.35rem 0;
+  color: var(--blockquote-text-color);
 }
 
 #write .md-def-split {
   min-width: 1ch;
 }
 
+/* Typora 默认用 2ch/2.5ch 固定内边距 + 绝对定位摆放 [ 与 ] :，在加粗等宽字与字间距下会出现「[ repo-link] :」左松右挤；
+   改为跟随文字流排布，还原 Markdown 源码的 [repo-link]: 形态 */
+#write .md-def-name {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 #write .md-def-name::before,
 #write .md-def-name::after {
+  position: static;
   color: var(--meta-content-color);
+}
+
+#write .md-def-name:not(:empty)::after {
+  content: "]:";
 }
 
 #write .md-image > .md-meta {
@@ -787,21 +1299,27 @@ sup.md-footnote {
 
 #write pre[lang="mermaid"] .md-diagram-panel,
 #write pre[lang="flow"] .md-diagram-panel,
-#write pre[lang="sequence"] .md-diagram-panel {
+#write pre[lang="sequence"] .md-diagram-panel,
+#write pre.md-fences-math.md-focus .md-diagram-panel {
   border: 1px solid var(--diagram-panel-border);
   background: var(--diagram-panel-bg);
+  color: var(--text-color);
   border-radius: 8px;
-  padding: 0.4rem 0.6rem;
+  padding: 0.85rem 0.75rem;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   overflow-x: auto;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 #write pre[lang="mermaid"].md-focus .md-diagram-panel,
 #write pre[lang="flow"].md-focus .md-diagram-panel,
-#write pre[lang="sequence"].md-focus .md-diagram-panel {
+#write pre[lang="sequence"].md-focus .md-diagram-panel,
+#write pre.md-fences-math.md-focus .md-diagram-panel {
   border-color: var(--primary-color);
+  margin-top: 0.4rem;
 }
 
 #write pre[lang="mermaid"] .md-diagram-panel-preview,
@@ -809,6 +1327,17 @@ sup.md-footnote {
 #write pre[lang="sequence"] .md-diagram-panel-preview {
   overflow-x: auto;
   max-width: 100%;
+}
+
+#write pre[lang="mermaid"] .md-diagram-panel::-webkit-scrollbar,
+#write pre[lang="mermaid"] .md-diagram-panel-preview::-webkit-scrollbar {
+  height: 6px;
+}
+
+#write pre[lang="mermaid"] .md-diagram-panel::-webkit-scrollbar-thumb,
+#write pre[lang="mermaid"] .md-diagram-panel-preview::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
 }
 
 /* 注意：绝不可对 mermaid svg 加 max-width: 100% !important，否则会覆盖 Mermaid 内联计算的窄图最大宽度导致竖向图表被放大数倍 */
@@ -896,6 +1425,11 @@ sup.md-footnote {
   stroke: var(--mermaid-grid-color);
 }
 
+/* 隐藏 Mermaid 甘特图穿透任务块文字与日期刻度的「今日刻度线」(.today)，保持图表完整整洁 */
+#write pre[lang="mermaid"] .today {
+  display: none !important;
+}
+
 /* 16. 模态框、快速打开面板、专注模式与侧边栏 */
 .modal-content .modal-header,
 .modal-content .modal-footer {
@@ -917,6 +1451,12 @@ sup.md-footnote {
   min-width: 420px;
   transform: translateX(-50%);
   margin-left: 0;
+  border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  --text-color: var(--sidebar-text-color);
+  --control-text-color: var(--sidebar-text-color);
+  color: var(--sidebar-text-color);
 }
 
 .mac-seamless-mode #typora-quick-open {
@@ -924,6 +1464,15 @@ sup.md-footnote {
 }
 
 #typora-quick-open #typora-quick-open-input input {
+  border-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+#md-searchpanel input {
+  border-radius: 5px;
+}
+
+#md-searchpanel input:focus {
   border-color: var(--primary-color);
 }
 
@@ -944,6 +1493,10 @@ sup.md-footnote {
   background: #23242b;
 }
 
+#typora-quick-open * {
+  color: var(--sidebar-text-color);
+}
+
 #typora-quick-open .typora-quick-open-item-path {
   margin-top: -2px;
 }
@@ -954,27 +1507,51 @@ sup.md-footnote {
   border-color: #00000040;
 }
 
-/* 专注模式 (Focus Mode) */
+.ty-editor-toolbar {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+}
+
+.ty-editor-toolbar button:hover,
+.ty-editor-toolbar .ty-toolbar-item:hover {
+  color: var(--primary-color);
+  background-color: var(--link-hover-bg);
+}
+
+/* 专注模式 (Focus Mode - 非聚焦行文字、列表圆点、复选框、装饰条与卡片全面静默弱化) */
 .on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container),
-.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) *,
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container):not(.md-fences) *,
 .on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) ol,
 .on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) ul {
   color: var(--blur-text-color) !important;
 }
 
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) li::marker,
+.on-focus-mode li:not(.md-focus-container)::marker {
+  color: var(--blur-text-color) !important;
+}
+
 .on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) img,
 .on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) .md-footnote,
-.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) .md-emoji {
-  opacity: 0.5;
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) .md-emoji,
+.on-focus-mode li:not(.md-focus-container) > input,
+.on-focus-mode #write h2:not(.md-focus)::after,
+.on-focus-mode #write pre.md-fences:not(.md-focus),
+.on-focus-mode blockquote:not(.md-focus-container),
+.on-focus-mode #write .md-alert:not(.md-focus-container) {
+  opacity: 0.45;
 }
 
 .on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) mark {
   background: var(--border-color);
+  border-bottom-color: transparent;
 }
 
 .on-focus-mode blockquote .md-end-block:not(.md-focus):not(.md-focus-container)::before,
 .on-focus-mode li:not(.md-focus-container)::before {
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /* 侧边栏 (#typora-sidebar) */
@@ -982,6 +1559,26 @@ sup.md-footnote {
   border-right: 1px solid #19191c;
   font-family: var(--sidebar-font);
   background-color: var(--side-bar-bg-color);
+  --text-color: var(--sidebar-text-color);
+  --control-text-color: var(--sidebar-text-color);
+  color: var(--sidebar-text-color);
+}
+
+#typora-sidebar * {
+  color: var(--sidebar-text-color);
+}
+
+#typora-sidebar * .file-tree-rename-input {
+  background: #181a1b;
+  color: #f0f0f0;
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+}
+
+#typora-sidebar * code {
+  background: #0000001a;
+  border-color: #ffffff26;
+  color: #ff8787;
 }
 
 #typora-sidebar .sidebar-tabs {
@@ -993,7 +1590,10 @@ sup.md-footnote {
 }
 
 #typora-sidebar #file-library-search-input {
-  background: #2e3235;
+  background: #222629;
+  color: var(--sidebar-text-color);
+  border: 1px solid #3a424a;
+  border-radius: 4px;
 }
 
 #typora-sidebar #file-library-search .file-list-item-file-name {
@@ -1002,6 +1602,18 @@ sup.md-footnote {
 
 #typora-sidebar #file-library-search .ty-search-item-line {
   font-family: "Operator Mono", "Source Han Sans", monospace;
+}
+
+#typora-sidebar #file-library-search .ty-search-item.active {
+  background: #23242b;
+}
+
+#typora-sidebar .file-list-item-summary,
+#typora-sidebar .ty-search-item-line,
+#typora-sidebar .ty-file-search-match-text,
+#typora-sidebar .ty-outline-hit {
+  font-weight: bold;
+  background: transparent;
 }
 
 #typora-sidebar .file-list-item,
@@ -1038,7 +1650,8 @@ sup.md-footnote {
   font-family: var(--body-font);
 }
 
-#typora-sidebar #ty-sidebar-footer li {
+#typora-sidebar #ty-sidebar-footer li,
+#typora-sidebar #ty-sidebar-footer .sidebar-footer-item {
   transition: background 0.3s;
 }
 
@@ -1060,14 +1673,23 @@ sup.md-footnote {
 
 #typora-sidebar #ty-sidebar-footer #sidebar-files-menu .ty-side-sort-btn.active,
 #typora-sidebar #ty-sidebar-footer #sidebar-files-menu .ty-side-sort-btn:hover {
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
 }
 
 #typora-sidebar #outline-content {
-  line-height: 1.4em;
+  line-height: 1.55em;
   height: 100%;
-  font-size: 1rem;
+  font-size: 0.96rem;
   font-family: var(--body-font);
+  padding: 0.4rem 0.35rem;
+}
+
+#typora-sidebar #outline-content .outline-item {
+  border-radius: 5px;
+  margin: 1px 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  transition: background-color 0.18s ease, color 0.18s ease;
 }
 
 #typora-sidebar #outline-content .outline-item:hover {
@@ -1079,8 +1701,30 @@ sup.md-footnote {
 }
 
 .pin-outline #outline-content .outline-active strong,
-.pin-outline .outline-active {
-  color: var(--primary-color);
+.pin-outline .outline-active,
+#typora-sidebar #outline-content .outline-active,
+#typora-sidebar #outline-content .outline-active * {
+  color: var(--primary-color) !important;
+  font-weight: 600;
+}
+
+.pin-outline .outline-active,
+#typora-sidebar #outline-content .outline-active {
+  background-color: rgba(184, 44, 48, 0.18);
+}
+
+#typora-sidebar ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+#typora-sidebar ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 3px;
+}
+
+#typora-sidebar ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
 
 #typora-sidebar .outline-expander {
@@ -1095,6 +1739,23 @@ footer.ty-footer {
   color: var(--primary-color);
 }
 
+.dropdown-menu .active a,
+.dropdown-menu .has-extra-menu.active a,
+.dropdown-menu .has-btn-submenu .menu-style-btn.active,
+#footer-word-count-info .ty-footer-word-count-all tr:hover,
+#ty-spell-check-dict-missing-menu li:hover,
+.ty-spell-check-panel-item.ty-active,
+.ty-spell-check-panel-item:hover,
+.footer-item:hover {
+  background: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px var(--primary-color);
+}
+
 /* 17. Megamenu 与偏好设置窗口 */
 .megamenu-opened header {
   background-image: none;
@@ -1105,8 +1766,27 @@ footer.ty-footer {
   background-color: var(--bg-color);
 }
 
+#megamenu-content .long-btn {
+  border-color: #9292928f;
+  transition: border-color 0.3s;
+}
+
+#megamenu-content .long-btn:hover {
+  border-color: var(--primary-color);
+  background: var(--border-color);
+  color: inherit !important;
+}
+
 #megamenu-menu-panel {
   border-top-color: var(--border-color);
+}
+
+#megamenu-menu-panel:not(:first-of-type) {
+  margin-top: 48px;
+}
+
+#megamenu-menu-list {
+  margin: 0;
 }
 
 .megamenu-menu-panel h1,
@@ -1261,10 +1941,95 @@ footer.ty-footer {
   background: var(--border-color);
 }
 
+/* 打印与 PDF 导出全面优化（保留卡片/高亮/复选框底色、消除末尾空白页、防跨页腰斩） */
 @media print {
-  #write ol > li,
-  #write ul > li {
-    color: var(--text-color);
+  html,
+  body,
+  #write {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #write {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 2.2rem !important;
+    min-height: 0 !important;
+  }
+
+  #write h1,
+  #write h2,
+  #write h3,
+  #write h4,
+  #write h5,
+  #write h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  blockquote,
+  #write .md-alert,
+  #write pre.md-fences,
+  #write .md-diagram-panel,
+  #write table tr,
+  #write .md-toc-item,
+  figure,
+  details {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* 目录容器跨页时自动克隆边框与内边距，保持断页处的卡片完整度 */
+  #write .md-toc {
+    break-inside: auto;
+    page-break-inside: auto;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* 锁定打印与导出 PDF 时的 TOC 目录链接颜色与层级灰度，严防 Chromium 打印引擎降级为 #0000ee 蓝字 */
+  #write .md-toc a,
+  #write .md-toc a:visited,
+  #write .md-toc a:link,
+  #write .md-toc-inner {
+    color: var(--blockquote-text-color) !important;
+    text-decoration: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #write .md-toc-h1 a,
+  #write .md-toc-h1 .md-toc-inner,
+  #write .md-toc-h2 a,
+  #write .md-toc-h2 .md-toc-inner {
+    color: var(--text-color) !important;
+    font-weight: 600;
+  }
+
+  #write .md-toc-h3 a,
+  #write .md-toc-h3 .md-toc-inner,
+  #write .md-toc-h4 a,
+  #write .md-toc-h4 .md-toc-inner,
+  #write .md-toc-h5 a,
+  #write .md-toc-h5 .md-toc-inner,
+  #write .md-toc-h6 a,
+  #write .md-toc-h6 .md-toc-inner {
+    color: var(--blockquote-text-color) !important;
+  }
+
+  /* 脚注链接与文内锚点在打印时保持主题色 */
+  sup.md-footnote a,
+  #write .md-footnote a,
+  a.reversefootnote,
+  #write .md-reverse-footnote-area a {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+  }
+
+  /* 保持常规链接在打印导出时使用主题色 */
+  a,
+  a:visited {
+    color: var(--primary-color) !important;
   }
 }
 
@@ -1273,47 +2038,49 @@ footer.ty-footer {
   font-family: var(--monospace);
 }
 
-/* 18. One-Dark 代码块语法高亮（三套主题统一采用深色代码块） */
+/* 18. Atom One Light / One Dark 自适应代码块语法高亮 */
 .cm-s-inner {
   font-family: "Operator Mono", "Source Han Sans", monospace;
   font-size: var(--fences-font-size);
-  color: #abb2bf;
-  background-color: #282c34;
+  color: var(--fences-text);
+  background-color: var(--fences-bg);
 }
 
 .cm-s-inner .CodeMirror-selected {
-  background-color: #3e4451;
+  background-color: var(--fences-selected-bg);
 }
 
 .cm-s-inner .CodeMirror-gutter,
 .cm-s-inner .CodeMirror-gutters {
   border: none;
-  background-color: #21252b;
+  border-right: 1px solid var(--fences-gutter-border);
+  background-color: var(--fences-bg);
 }
 
 .cm-s-inner .CodeMirror-linenumber,
 .cm-s-inner .CodeMirror-linenumbers {
-  color: #5c6370 !important;
+  color: var(--fences-linenumber) !important;
   background-color: transparent;
 }
 
 .cm-s-inner .CodeMirror-lines {
-  color: #abb2bf !important;
+  color: var(--fences-text) !important;
   background-color: transparent;
 }
 
 .cm-s-inner .CodeMirror-cursor {
-  border-left: 2px solid #56b6c2 !important;
+  border-left: 2px solid var(--fences-cursor) !important;
 }
 
-.cm-s-inner .CodeMirror-matchingbracket {
-  background-color: #3b514d;
-  color: #ffef28 !important;
-  border-bottom: 1px solid #56b6c2;
+.cm-s-inner .CodeMirror-matchingbracket,
+.cm-s-inner .CodeMirror-matchingtag {
+  background-color: var(--fences-matchbracket-bg);
+  color: var(--fences-matchbracket-color) !important;
+  border-bottom: 1px solid var(--cm-operator);
 }
 
 .cm-s-inner .CodeMirror-nonmatchingbracket {
-  background-color: #78122f;
+  background-color: rgba(228, 86, 73, 0.28);
 }
 
 .cm-s-inner .CodeMirror-foldmarker,
@@ -1322,147 +2089,243 @@ footer.ty-footer {
 .cm-s-inner .CodeMirror-foldgutter-folded {
   border: none;
   text-shadow: none;
-  color: #5c6370 !important;
+  color: var(--fences-linenumber) !important;
   background-color: transparent;
 }
 
 .cm-s-inner .CodeMirror-activeline-background {
-  background-color: rgba(153, 187, 255, 0.06);
+  background-color: var(--fences-activeline-bg);
 }
 
 .cm-s-inner .cm-header {
-  color: #e06c75;
+  color: var(--cm-tag);
 }
 .cm-s-inner .cm-quote {
-  color: #5c6370;
+  color: var(--cm-comment);
   font-style: italic;
 }
 .cm-s-inner .cm-negative {
-  color: #e06c75;
+  color: var(--cm-tag);
 }
 .cm-s-inner .cm-positive {
-  color: #e06c75;
+  color: var(--cm-string);
 }
 .cm-s-inner .cm-strong {
-  color: #d19a66;
+  color: var(--cm-number);
   font-weight: bold;
 }
 .cm-s-inner .cm-header .cm-strong {
-  color: #d19a66;
+  color: var(--cm-number);
   font-weight: bold;
 }
 .cm-s-inner .cm-em {
-  color: #c678dd;
+  color: var(--cm-keyword);
   font-style: italic;
 }
 .cm-s-inner .cm-header .cm-em {
-  color: #c678dd;
+  color: var(--cm-keyword);
   font-style: italic;
 }
 .cm-s-inner .cm-tag {
-  color: #e06c75;
+  color: var(--cm-tag);
 }
 .cm-s-inner .cm-attribute {
-  color: #d19a66;
+  color: var(--cm-number);
 }
 .cm-s-inner .cm-link {
-  color: #98c379;
-  border-bottom: solid 1px #98c379;
+  color: var(--cm-string);
+  border-bottom: solid 1px var(--cm-string);
 }
 .cm-s-inner .cm-builtin {
-  color: #e06c75;
+  color: var(--cm-builtin);
 }
 .cm-s-inner .cm-keyword {
-  color: #c678dd;
+  color: var(--cm-keyword);
 }
 .cm-s-inner .cm-def {
-  color: #e5c07b;
+  color: var(--cm-def);
 }
 .cm-s-inner .cm-atom {
-  color: #d19a66;
+  color: var(--cm-number);
 }
 .cm-s-inner .cm-number {
-  color: #d19a66;
+  color: var(--cm-number);
 }
 .cm-s-inner .cm-property {
-  color: #56b6c2;
+  color: var(--cm-property);
 }
 .cm-s-inner .cm-qualifier {
-  color: #d19a66;
+  color: var(--cm-number);
 }
 .cm-s-inner .cm-variable {
-  color: #e06c75;
+  color: var(--cm-variable);
 }
-.cm-s-inner .cm-string {
-  color: #98c379;
+.cm-s-inner span.cm-variable-2 {
+  color: var(--cm-variable-2);
+}
+.cm-s-inner .cm-variable-3,
+.cm-s-inner .cm-type {
+  color: var(--cm-type);
+}
+.cm-s-inner .cm-string,
+.cm-s-inner .cm-string-2 {
+  color: var(--cm-string);
 }
 .cm-s-inner .cm-punctuation {
-  color: #abb2bf;
+  color: var(--fences-text);
 }
 .cm-s-inner .cm-operator {
-  color: #56b6c2;
+  color: var(--cm-operator);
 }
 .cm-s-inner .cm-meta {
-  color: #abb2bf;
+  color: var(--cm-meta);
 }
 .cm-s-inner .cm-bracket {
-  color: #abb2bf;
+  color: var(--fences-text);
 }
 .cm-s-inner .cm-comment {
-  color: #629755;
+  color: var(--cm-comment);
   font-style: italic;
 }
 .cm-s-inner .cm-error {
-  color: #e06c75;
+  color: var(--cm-tag);
 }
 
 .cm-s-inner .cm-m-css.cm-variable {
-  color: #828997;
+  color: var(--cm-css-var);
 }
 .cm-s-inner .cm-m-css.cm-property {
-  color: #abb2bf;
+  color: var(--fences-text);
 }
 .cm-s-inner .cm-m-css.cm-atom {
-  color: #56b6c2;
+  color: var(--cm-operator);
 }
 .cm-s-inner .cm-m-css.cm-builtin {
-  color: #56b6c2;
+  color: var(--cm-operator);
 }
 .cm-s-inner .cm-m-lua.cm-variable {
-  color: #56b6c2;
+  color: var(--cm-operator);
 }
 
-/* 19. 代码块外框容器与语言选择浮层 */
+/* 19. 代码块外框容器、Mac 窗口顶栏与语言选择浮层 */
 #write pre.md-fences {
   display: block !important;
-  -webkit-font-smoothing: initial;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
   max-width: 100%;
   box-sizing: border-box;
-  line-height: 1.5rem;
+  line-height: 1.62;
   font-size: var(--fences-font-size);
-  background-color: #282c34;
+  background-color: var(--fences-bg);
   font-family: "Operator Mono", "Source Han Sans", monospace;
-  padding: 0.7rem 0;
-  margin: 8px 0 18px 0;
-  color: #abb2bf;
+  padding: 0.75rem 0.4rem;
+  margin: 1rem 0 1.25rem 0;
+  color: var(--fences-text);
   border: var(--fences-border);
-  border-radius: 6px;
+  border-radius: 8px;
+}
+
+/* 仅对真实代码块启用 Mac 红黄绿三圆点与右上角常驻语言角标（自动排除 Mermaid/Flow/Sequence 与 Math 公式块） */
+#write pre.md-fences:not([lang="mermaid"]):not([lang="flow"]):not([lang="sequence"]):not(.md-fences-math):not(.md-fences-advanced) {
+  padding-top: 2.3rem;
+  box-shadow: var(--fences-shadow);
+}
+
+#write pre.md-fences:not([lang="mermaid"]):not([lang="flow"]):not([lang="sequence"]):not(.md-fences-math):not(.md-fences-advanced)::before {
+  content: "";
+  position: absolute;
+  top: 0.78rem;
+  left: 0.95rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: #ff5f56;
+  box-shadow: 19px 0 0 #ffbd2e, 38px 0 0 #27c93f;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#write pre.md-fences[lang]:not([lang=""]):not([lang="mermaid"]):not([lang="flow"]):not([lang="sequence"]):not(.md-fences-math):not(.md-fences-advanced)::after {
+  content: attr(lang);
+  position: absolute;
+  top: 0.58rem;
+  right: 0.95rem;
+  font-family: "Operator Mono", "Source Han Sans", monospace;
+  font-size: 0.72rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fences-lang-color);
+  padding: 0.22rem 0.48rem;
+  border-radius: 4px;
+  background-color: var(--fences-lang-bg);
+  pointer-events: none;
+  user-select: none;
+}
+
+#write pre.md-fences:not([lang="mermaid"]):not([lang="flow"]):not([lang="sequence"]):not(.md-fences-math):not(.md-fences-advanced) > .CodeMirror {
+  border-top: 1px solid var(--fences-header-border);
+  padding-top: 0.5rem;
 }
 
 .CodeMirror {
-  padding-left: 0.7rem;
+  padding-left: 0.5rem;
 }
 
+#write pre.md-fences .CodeMirror-scroll::-webkit-scrollbar,
+#write pre.md-fences .CodeMirror-hscrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+#write pre.md-fences .CodeMirror-scroll::-webkit-scrollbar-thumb,
+#write pre.md-fences .CodeMirror-hscrollbar::-webkit-scrollbar-thumb {
+  background: var(--fences-scrollbar);
+  border-radius: 3px;
+}
+
+#write pre.md-fences .CodeMirror-scroll::-webkit-scrollbar-thumb:hover,
+#write pre.md-fences .CodeMirror-hscrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--fences-scrollbar-hover);
+}
+
+#write .md-fences .code-tooltip,
+#write .code-tooltip,
 .md-fences .code-tooltip {
-  background-color: #21252b;
-  color: #abb2bf;
-  border: 1px solid #323842;
+  background-color: var(--fences-tooltip-bg);
+  color: var(--fences-text);
+  border: 1px solid var(--fences-tooltip-border);
+  border-radius: 4px;
+}
+
+.code-tooltip.md-f-tooltip,
+.code-tooltip.md-f-tooltip .md-arrow::after {
+  background: var(--fences-tooltip-bg) !important;
+  color: var(--fences-text) !important;
+}
+
+.code-tooltip.md-f-tooltip a {
+  color: var(--primary-color);
+}
+
+.auto-suggest-container {
+  background: var(--fences-tooltip-bg);
+  color: var(--fences-text);
+  border: 1px solid var(--fences-tooltip-border);
+  border-radius: 6px;
+}
+
+.auto-suggest-container .autoComplt-hint.active,
+#fences-auto-suggest .active {
+  background: var(--primary-color);
+  color: #ffffff;
   border-radius: 4px;
 }
 
 /* 选中与搜索块过渡 */
 .CodeMirror-selected {
-  background: #4b5262 !important;
+  background: var(--fences-selected-bg) !important;
 }
 
 .CodeMirror-selectedtext {
@@ -1477,5 +2340,5 @@ footer.ty-footer {
 }
 
 div.CodeMirror span.CodeMirror-matchingbracket {
-  color: #c3e88d !important;
+  color: var(--fences-matchbracket-color) !important;
 }

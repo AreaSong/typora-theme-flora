@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Flora 调优专用：左侧公用块序号指示器（#01、#02 …）
+   仅在 flora-base.css 顶部的 @import 开关启用时加载；关闭后不会留下任何
+   counter / position 计算开销（CSS 变量无法关闭选择器本身，故拆为独立文件）。
+   ========================================================================== */
+/* @import 位于 flora-base.css 最前面，同权重规则会被后续 #write 覆盖，故用 body #write 提升权重 */
+body #write {
+  padding-left: 4.6rem;
+  counter-reset: flora-debug-line 0;
+}
+
+#write > * {
+  position: relative;
+  counter-increment: flora-debug-line;
+}
+
+#write > figure {
+  overflow: visible;
+}
+
+#write > .md-meta-block::after,
+#write > h1::before,
+#write > h2::before,
+#write > h3::after,
+#write > h4::after,
+#write > h5::after,
+#write > h6::after,
+#write > p::before,
+#write > ul::before,
+#write > ol::before,
+#write > blockquote::before,
+#write > blockquote.md-alert::before,
+#write > figure::before,
+#write > details::before,
+#write > dl::before,
+#write > hr::before,
+#write > .md-toc::before,
+#write > .md-math-block::before,
+#write > .footnotes-area::before,
+#write > .md-def-link::before,
+#write > .md-def-footnote::before,
+#write > pre.md-fences:is([lang="mermaid"], [lang="flow"], [lang="sequence"], .md-fences-math, .md-fences-advanced)::before,
+#write > pre.md-fences:not([lang="mermaid"]):not([lang="flow"]):not([lang="sequence"]):not(.md-fences-math):not(.md-fences-advanced) > .CodeMirror::before {
+  content: "#" counter(flora-debug-line, decimal-leading-zero) !important;
+  display: inline-block !important;
+  position: absolute !important;
+  left: -4.2rem !important;
+  top: 0.15rem !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 1px 6px !important;
+  font-family: "Operator Mono", "Consolas", monospace !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  line-height: 1.35 !important;
+  color: #ffffff !important;
+  background-color: var(--primary-color) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  opacity: 0.88 !important;
+  z-index: 99 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+}
+
+/* 普通代码块内部 .CodeMirror 定位修正，使其左侧编号与其他顶层块垂直对齐 */
+#write > pre.md-fences:not([lang="mermaid"]):not([lang="flow"]):not([lang="sequence"]):not(.md-fences-math):not(.md-fences-advanced) > .CodeMirror {
+  position: relative;
+}
+
+#write > pre.md-fences:not([lang="mermaid"]):not([lang="flow"]):not([lang="sequence"]):not(.md-fences-math):not(.md-fences-advanced) > .CodeMirror::before {
+  left: -4.6rem !important;
+  top: -1.8rem !important;
+}
+
+@media print {
+  #write > .md-meta-block::after,
+  #write > h1::before,
+  #write > h2::before,
+  #write > h3::after,
+  #write > h4::after,
+  #write > h5::after,
+  #write > h6::after,
+  #write > p::before,
+  #write > ul::before,
+  #write > ol::before,
+  #write > blockquote::before,
+  #write > blockquote.md-alert::before,
+  #write > figure::before,
+  #write > details::before,
+  #write > dl::before,
+  #write > hr::before,
+  #write > .md-toc::before,
+  #write > .md-math-block::before,
+  #write > .footnotes-area::before,
+  #write > .md-def-link::before,
+  #write > .md-def-footnote::before,
+  #write > pre.md-fences::before,
+  #write > pre.md-fences > .CodeMirror::before {
+    display: none !important;
+  }
+}
