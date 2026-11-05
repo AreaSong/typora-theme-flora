@@ -237,13 +237,21 @@ body.typora-export #write .md-toc-item {
 }
 
 #write .md-toc a,
-#write .md-toc a:visited,
 #write .md-toc a:link,
+#write .md-toc a:visited,
+#write .md-toc a:hover,
+#write .md-toc a:active,
 #write .md-toc-inner,
 body.typora-export #write .md-toc a,
-body.typora-export #write .md-toc a:visited,
 body.typora-export #write .md-toc a:link,
-body.typora-export #write .md-toc-inner {
+body.typora-export #write .md-toc a:visited,
+body.typora-export #write .md-toc a:hover,
+body.typora-export #write .md-toc a:active,
+body.typora-export #write .md-toc-inner,
+body.typora-export .md-toc a,
+body.typora-export .md-toc a:link,
+body.typora-export .md-toc a:visited,
+body.typora-export .md-toc-inner {
   color: #8498aa !important;
   text-decoration: none !important;
   transition: color 0.15s ease;
@@ -383,6 +391,19 @@ body.typora-export #write .md-toc-inner:hover {
 #write pre[lang="mermaid"] .divider,
 #write pre[lang="mermaid"] .relation {
   stroke: var(--mermaid-line-color) !important;
+}
+
+/* 隐藏甘特图今日穿刺红线与溢出防刺穿 */
+#write pre[lang="mermaid"] .today,
+#write pre[lang="mermaid"] .today-line,
+#write pre[lang="mermaid"] line.today,
+#write pre[lang="mermaid"] line.today-line,
+#write pre[lang="mermaid"] .today-marker,
+.mermaid .today,
+.mermaid .today-line,
+.mermaid line.today,
+.mermaid line.today-line {
+  display: none !important;
 }
 
 /* Mermaid v11 新增图表（象限图 quadrantChart / 看板图 kanban / 架构块图 block / XY 图表）暗色防撞色加固 */
@@ -621,38 +642,127 @@ li.CodeMirror-hint-active,
     print-color-adjust: exact !important;
   }
 
-  /* 暗色模式导出 PDF 时，目录卡片背景、边框与文字强制使用深色调与层级对比 */
-  #write .md-toc {
-    background-color: #202326 !important;
-    border: 1px solid #2d353b !important;
-    box-decoration-break: clone !important;
-    -webkit-box-decoration-break: clone !important;
+  /* 暗色模式导出 PDF 时，目录容器使用无底色优雅微边框，彻底杜绝深色块跨页腰斩切断 */
+  #write .md-toc,
+  body.typora-export #write .md-toc,
+  body.typora-export .md-toc {
+    background-color: transparent !important;
+    border: none !important;
+    border-top: 1px solid #2d353b !important;
+    border-bottom: 1px solid #2d353b !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 1rem 0 !important;
+    margin: 1.5rem 0 !important;
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  #write .md-toc-item,
+  body.typora-export #write .md-toc-item,
+  body.typora-export .md-toc-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
 
   #write .md-toc a,
-  #write .md-toc a:visited,
   #write .md-toc a:link,
-  #write .md-toc-inner {
+  #write .md-toc a:visited,
+  #write .md-toc a:hover,
+  #write .md-toc a:active,
+  #write .md-toc-inner,
+  body.typora-export #write .md-toc a,
+  body.typora-export #write .md-toc a:link,
+  body.typora-export #write .md-toc a:visited,
+  body.typora-export #write .md-toc a:hover,
+  body.typora-export #write .md-toc a:active,
+  body.typora-export #write .md-toc-inner,
+  body.typora-export .md-toc a,
+  body.typora-export .md-toc a:link,
+  body.typora-export .md-toc a:visited,
+  body.typora-export .md-toc-inner {
     color: #8498aa !important;
     text-decoration: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   #write .md-toc-h1 a,
+  #write .md-toc-h1 a:link,
+  #write .md-toc-h1 a:visited,
   #write .md-toc-h1 .md-toc-inner,
   #write .md-toc-h2 a,
-  #write .md-toc-h2 .md-toc-inner {
+  #write .md-toc-h2 a:link,
+  #write .md-toc-h2 a:visited,
+  #write .md-toc-h2 .md-toc-inner,
+  body.typora-export #write .md-toc-h1 a,
+  body.typora-export #write .md-toc-h1 a:link,
+  body.typora-export #write .md-toc-h1 a:visited,
+  body.typora-export #write .md-toc-h1 .md-toc-inner,
+  body.typora-export #write .md-toc-h2 a,
+  body.typora-export #write .md-toc-h2 a:link,
+  body.typora-export #write .md-toc-h2 a:visited,
+  body.typora-export #write .md-toc-h2 .md-toc-inner,
+  body.typora-export .md-toc-h1 a,
+  body.typora-export .md-toc-h1 a:link,
+  body.typora-export .md-toc-h1 a:visited,
+  body.typora-export .md-toc-h1 .md-toc-inner,
+  body.typora-export .md-toc-h2 a,
+  body.typora-export .md-toc-h2 a:link,
+  body.typora-export .md-toc-h2 a:visited,
+  body.typora-export .md-toc-h2 .md-toc-inner {
     color: #e2ecf5 !important;
-    font-weight: 600;
+    font-weight: 600 !important;
   }
 
   #write .md-toc-h3 a,
+  #write .md-toc-h3 a:link,
+  #write .md-toc-h3 a:visited,
   #write .md-toc-h3 .md-toc-inner,
   #write .md-toc-h4 a,
+  #write .md-toc-h4 a:link,
+  #write .md-toc-h4 a:visited,
   #write .md-toc-h4 .md-toc-inner,
   #write .md-toc-h5 a,
+  #write .md-toc-h5 a:link,
+  #write .md-toc-h5 a:visited,
   #write .md-toc-h5 .md-toc-inner,
   #write .md-toc-h6 a,
-  #write .md-toc-h6 .md-toc-inner {
+  #write .md-toc-h6 a:link,
+  #write .md-toc-h6 a:visited,
+  #write .md-toc-h6 .md-toc-inner,
+  body.typora-export #write .md-toc-h3 a,
+  body.typora-export #write .md-toc-h3 a:link,
+  body.typora-export #write .md-toc-h3 a:visited,
+  body.typora-export #write .md-toc-h3 .md-toc-inner,
+  body.typora-export #write .md-toc-h4 a,
+  body.typora-export #write .md-toc-h4 a:link,
+  body.typora-export #write .md-toc-h4 a:visited,
+  body.typora-export #write .md-toc-h4 .md-toc-inner,
+  body.typora-export #write .md-toc-h5 a,
+  body.typora-export #write .md-toc-h5 a:link,
+  body.typora-export #write .md-toc-h5 a:visited,
+  body.typora-export #write .md-toc-h5 .md-toc-inner,
+  body.typora-export #write .md-toc-h6 a,
+  body.typora-export #write .md-toc-h6 a:link,
+  body.typora-export #write .md-toc-h6 a:visited,
+  body.typora-export #write .md-toc-h6 .md-toc-inner,
+  body.typora-export .md-toc-h3 a,
+  body.typora-export .md-toc-h3 a:link,
+  body.typora-export .md-toc-h3 a:visited,
+  body.typora-export .md-toc-h3 .md-toc-inner,
+  body.typora-export .md-toc-h4 a,
+  body.typora-export .md-toc-h4 a:link,
+  body.typora-export .md-toc-h4 a:visited,
+  body.typora-export .md-toc-h4 .md-toc-inner,
+  body.typora-export .md-toc-h5 a,
+  body.typora-export .md-toc-h5 a:link,
+  body.typora-export .md-toc-h5 a:visited,
+  body.typora-export .md-toc-h5 .md-toc-inner,
+  body.typora-export .md-toc-h6 a,
+  body.typora-export .md-toc-h6 a:link,
+  body.typora-export .md-toc-h6 a:visited,
+  body.typora-export .md-toc-h6 .md-toc-inner {
     color: #8498aa !important;
   }
 

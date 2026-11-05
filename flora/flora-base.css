@@ -300,8 +300,11 @@ sub {
 }
 
 /* 非编辑聚焦状态下，自动隐藏标题中的空 HTML 锚点标签（如 <a id="wenben"></a>），光标点入该行时自动恢复显示 */
-#write .md-heading:not(.md-focus) .md-html-inline {
-  display: none;
+#write .md-heading:not(.md-focus) .md-html-inline,
+#write .md-heading:not(.md-focus) span[md-inline="html_inline"],
+#write :is(h1, h2, h3, h4, h5, h6) a:empty,
+#write :is(h1, h2, h3, h4, h5, h6) a[id]:not([href]):empty {
+  display: none !important;
 }
 
 mark {
@@ -1425,8 +1428,16 @@ sup.md-footnote:hover a {
   stroke: var(--mermaid-grid-color);
 }
 
-/* 隐藏 Mermaid 甘特图穿透任务块文字与日期刻度的「今日刻度线」(.today)，保持图表完整整洁 */
-#write pre[lang="mermaid"] .today {
+/* 隐藏 Mermaid 甘特图穿透任务块文字与日期刻度的「今日刻度线」(.today / .today-line)，防溢出防穿刺 */
+#write pre[lang="mermaid"] .today,
+#write pre[lang="mermaid"] .today-line,
+#write pre[lang="mermaid"] line.today,
+#write pre[lang="mermaid"] line.today-line,
+#write pre[lang="mermaid"] .today-marker,
+.mermaid .today,
+.mermaid .today-line,
+.mermaid line.today,
+.mermaid line.today-line {
   display: none !important;
 }
 
@@ -1973,25 +1984,46 @@ footer.ty-footer {
   #write .md-diagram-panel,
   #write table tr,
   #write .md-toc-item,
+  body.typora-export .md-toc-item,
   figure,
   details {
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
-  /* 目录容器跨页时自动克隆边框与内边距，保持断页处的卡片完整度 */
-  #write .md-toc {
+  /* 打印与导出 PDF 时的 TOC 目录容器：柔和上下分割线与纯净背景，杜绝深色厚块跨页被生硬腰斩切断 */
+  #write .md-toc,
+  body.typora-export #write .md-toc,
+  body.typora-export .md-toc {
+    background-color: transparent !important;
+    border: none !important;
+    border-top: 1px solid var(--border-color) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 1rem 0 !important;
+    margin: 1.5rem 0 !important;
     break-inside: auto;
     page-break-inside: auto;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
   }
 
   /* 锁定打印与导出 PDF 时的 TOC 目录链接颜色与层级灰度，严防 Chromium 打印引擎降级为 #0000ee 蓝字 */
   #write .md-toc a,
-  #write .md-toc a:visited,
   #write .md-toc a:link,
-  #write .md-toc-inner {
+  #write .md-toc a:visited,
+  #write .md-toc a:hover,
+  #write .md-toc a:active,
+  #write .md-toc-inner,
+  body.typora-export #write .md-toc a,
+  body.typora-export #write .md-toc a:link,
+  body.typora-export #write .md-toc a:visited,
+  body.typora-export #write .md-toc a:hover,
+  body.typora-export #write .md-toc a:active,
+  body.typora-export #write .md-toc-inner,
+  body.typora-export .md-toc a,
+  body.typora-export .md-toc a:link,
+  body.typora-export .md-toc a:visited,
+  body.typora-export .md-toc .md-toc-inner {
     color: var(--blockquote-text-color) !important;
     text-decoration: none !important;
     -webkit-print-color-adjust: exact !important;
@@ -1999,21 +2031,81 @@ footer.ty-footer {
   }
 
   #write .md-toc-h1 a,
+  #write .md-toc-h1 a:link,
+  #write .md-toc-h1 a:visited,
   #write .md-toc-h1 .md-toc-inner,
   #write .md-toc-h2 a,
-  #write .md-toc-h2 .md-toc-inner {
+  #write .md-toc-h2 a:link,
+  #write .md-toc-h2 a:visited,
+  #write .md-toc-h2 .md-toc-inner,
+  body.typora-export #write .md-toc-h1 a,
+  body.typora-export #write .md-toc-h1 a:link,
+  body.typora-export #write .md-toc-h1 a:visited,
+  body.typora-export #write .md-toc-h1 .md-toc-inner,
+  body.typora-export #write .md-toc-h2 a,
+  body.typora-export #write .md-toc-h2 a:link,
+  body.typora-export #write .md-toc-h2 a:visited,
+  body.typora-export #write .md-toc-h2 .md-toc-inner,
+  body.typora-export .md-toc-h1 a,
+  body.typora-export .md-toc-h1 a:link,
+  body.typora-export .md-toc-h1 a:visited,
+  body.typora-export .md-toc-h1 .md-toc-inner,
+  body.typora-export .md-toc-h2 a,
+  body.typora-export .md-toc-h2 a:link,
+  body.typora-export .md-toc-h2 a:visited,
+  body.typora-export .md-toc-h2 .md-toc-inner {
     color: var(--text-color) !important;
-    font-weight: 600;
+    font-weight: 600 !important;
   }
 
   #write .md-toc-h3 a,
+  #write .md-toc-h3 a:link,
+  #write .md-toc-h3 a:visited,
   #write .md-toc-h3 .md-toc-inner,
   #write .md-toc-h4 a,
+  #write .md-toc-h4 a:link,
+  #write .md-toc-h4 a:visited,
   #write .md-toc-h4 .md-toc-inner,
   #write .md-toc-h5 a,
+  #write .md-toc-h5 a:link,
+  #write .md-toc-h5 a:visited,
   #write .md-toc-h5 .md-toc-inner,
   #write .md-toc-h6 a,
-  #write .md-toc-h6 .md-toc-inner {
+  #write .md-toc-h6 a:link,
+  #write .md-toc-h6 a:visited,
+  #write .md-toc-h6 .md-toc-inner,
+  body.typora-export #write .md-toc-h3 a,
+  body.typora-export #write .md-toc-h3 a:link,
+  body.typora-export #write .md-toc-h3 a:visited,
+  body.typora-export #write .md-toc-h3 .md-toc-inner,
+  body.typora-export #write .md-toc-h4 a,
+  body.typora-export #write .md-toc-h4 a:link,
+  body.typora-export #write .md-toc-h4 a:visited,
+  body.typora-export #write .md-toc-h4 .md-toc-inner,
+  body.typora-export #write .md-toc-h5 a,
+  body.typora-export #write .md-toc-h5 a:link,
+  body.typora-export #write .md-toc-h5 a:visited,
+  body.typora-export #write .md-toc-h5 .md-toc-inner,
+  body.typora-export #write .md-toc-h6 a,
+  body.typora-export #write .md-toc-h6 a:link,
+  body.typora-export #write .md-toc-h6 a:visited,
+  body.typora-export #write .md-toc-h6 .md-toc-inner,
+  body.typora-export .md-toc-h3 a,
+  body.typora-export .md-toc-h3 a:link,
+  body.typora-export .md-toc-h3 a:visited,
+  body.typora-export .md-toc-h3 .md-toc-inner,
+  body.typora-export .md-toc-h4 a,
+  body.typora-export .md-toc-h4 a:link,
+  body.typora-export .md-toc-h4 a:visited,
+  body.typora-export .md-toc-h4 .md-toc-inner,
+  body.typora-export .md-toc-h5 a,
+  body.typora-export .md-toc-h5 a:link,
+  body.typora-export .md-toc-h5 a:visited,
+  body.typora-export .md-toc-h5 .md-toc-inner,
+  body.typora-export .md-toc-h6 a,
+  body.typora-export .md-toc-h6 a:link,
+  body.typora-export .md-toc-h6 a:visited,
+  body.typora-export .md-toc-h6 .md-toc-inner {
     color: var(--blockquote-text-color) !important;
   }
 
